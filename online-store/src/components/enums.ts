@@ -1,4 +1,4 @@
-export enum LegoCollection  {
+export enum LegoCategory  {
   City = 'city',
   Duplo = 'duplo',
   Technic = 'technic',

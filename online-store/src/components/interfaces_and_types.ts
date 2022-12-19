@@ -3,10 +3,11 @@ export type legoItem = {
   name: string;
   ageFrom: number;
   price: number;
-  collection: string;
+  category: string;
   numbOfDetails: number;
   sizeOfDetails: string ;
   interests : string[];
   description: string;
   amountOnStock: number;
+  urlImage : string[];
 }
