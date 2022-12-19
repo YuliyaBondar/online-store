@@ -1,7 +1,7 @@
 import { LegoCategory, LegoSize, Interest } from "./enums";
-import { legoItem } from "./interfaces_and_types";
+import { LegoItem } from "./interfaces_and_types";
 
-let legoData : legoItem[] = [
+let legoData : LegoItem[] = [
 {
   id : 1,
   name: 'Freight Train',
