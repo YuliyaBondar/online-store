@@ -1,4 +1,4 @@
-export type legoItem = {
+export type LegoItem = {
   id : number;
   name: string;
   ageFrom: number;
