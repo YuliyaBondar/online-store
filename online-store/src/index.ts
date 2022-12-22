@@ -1,5 +1,6 @@
-import Home from './components/home';
+import Store from './components/store';
 import { LegoItem } from './components/types';
+import './global.css';
 
 const dataSource = 'https://raw.githubusercontent.com/poznerrr/fakedb/main/db.json';
 
@@ -18,7 +19,7 @@ class App {
     }
 
     async start() {
-        const home = new Home(this.data);
-        await home.render();
+        const store = new Store(this.data);
+        await store.render();
     }
 }
