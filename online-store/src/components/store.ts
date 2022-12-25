@@ -2,15 +2,15 @@ import { LegoItem } from './types';
 import '../styles/store.css';
 import { ProductsList } from './productsList';
 import { Basket } from './Basket';
+import { AppState, appState } from '../Store/AppState';
+import { IComponent } from './interfaces';
 
-class Store {
-    data: Array<LegoItem>;
+class Store implements IComponent {
     productsList: ProductsList;
     basket: Basket;
-    constructor(data: Array<LegoItem>) {
-        this.data = data;
-        this.productsList = new ProductsList(data);
-        this.basket = new Basket(data); //TODO:
+    constructor(appState: AppState) {
+        this.productsList = new ProductsList(appState.state.products);
+        this.basket = new Basket(appState.state.basket.orders);
 
     }
 
@@ -43,8 +43,15 @@ class Store {
           <p>2022</p>
           <a href="https://rs.school/js/"><img class="footer__svg" src="https://raw.githubusercontent.com/YuliyaBondar/christmas-data/main/assets/svg/rss.svg" alt="rs_school_js"></a>
         </footer>
-      `;
+      `
+      return '1';
+      ;
     }
+
+    async addEvents () {
+      this.basket.addEvents();
+      this.productsList.addEvents();
+    };
 }
 
 export default Store;

@@ -1,25 +1,26 @@
 import Store from './components/store';
 import { LegoItem } from './components/types';
 import './global.css';
+import { appState } from './Store/AppState';
 
 const dataSource = 'https://raw.githubusercontent.com/poznerrr/fakedb/main/db.json';
 
 fetch(dataSource)
     .then((response) => response.json())
     .then((data) => {
-        const app = new App(data);
+        appState.state.products = data;
+        const app = new App();
         app.start();
     });
 
 class App {
-    data: Array<LegoItem>;
 
-    constructor(data: Array<LegoItem>) {
-        this.data = data;
+    constructor() {
     }
 
     async start() {
-        const store = new Store(this.data);
+        const store = new Store(appState);
         await store.render();
+        await store.addEvents();
     }
 }

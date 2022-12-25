@@ -11,3 +11,8 @@ export type LegoItem = {
   amountOnStock: number;
   urlImage : string[];
 }
+
+export type Order = {
+  legoItem: LegoItem;
+  count: number;
+}
