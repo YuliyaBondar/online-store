@@ -26,7 +26,7 @@
 .main {
   display: flex;
   justify-content: center;
-  align-items: center;
+
   row-gap: 113px;
   transition: all 1s ease-in-out;
 }
@@ -48,4 +48,15 @@
 .products {
   display:flex;
   flex-wrap: wrap;
+}
+
+.userParams {
+  display: flex;
+  flex-direction: column;
+}
+
+.filters {
+  width:200px;
+  min-height: 400px;
+  background-color: blueviolet;
 }

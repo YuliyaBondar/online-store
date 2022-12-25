@@ -1,13 +1,17 @@
 import { LegoItem } from './types';
 import '../styles/store.css';
 import { ProductsList } from './productsList';
+import { Basket } from './Basket';
 
 class Store {
     data: Array<LegoItem>;
     productsList: ProductsList;
+    basket: Basket;
     constructor(data: Array<LegoItem>) {
         this.data = data;
         this.productsList = new ProductsList(data);
+        this.basket = new Basket(data); //TODO:
+
     }
 
     async render() {
@@ -18,6 +22,14 @@ class Store {
           </nav>
         </header>
         <main class="main">
+        <div class = "userParams">
+        <div class ="basket">
+        ${await this.basket.render()}
+        </div>
+        <div class ="filters">
+        Фильтры TODO
+        </div>
+        </div>
         <div class = "products">
         ${await this.productsList.render()}
         </div>
