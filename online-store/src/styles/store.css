@@ -8,14 +8,14 @@
   background-color: #17a8b9;
   z-index: 9;
 }
-  
+
 .logo,
 .footer__svg {
   height: 60px;
   cursor: pointer;
   transition: 0.3s;
 }
-  
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -25,7 +25,6 @@
 
 .main {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   row-gap: 113px;
@@ -44,4 +43,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.products {
+  display:flex;
+  flex-wrap: wrap;
 }

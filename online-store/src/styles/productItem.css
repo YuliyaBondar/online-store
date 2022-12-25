@@ -1,0 +1,17 @@
+.item {
+  width: 200px;
+  margin: 20px;
+  border: 1px solid gray;
+}
+
+.item__logo {
+  width: 100px;
+  height: 100px;
+}
+
+.item__buy {
+  width: 150px;
+  height: 20px;
+  margin-top: 10px;
+  background-color: #17a8b9;
+}
