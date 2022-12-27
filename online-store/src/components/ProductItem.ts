@@ -20,8 +20,8 @@ getHTMLId = () => `${this.product.id}`;
     <p class="item__logoConteiner"><img class="logoConteiner__logo item__logo" src ="${this.product.urlImage[0]}"></p>
     <p class="item__price">$${this.product.price}</p>
     <p class="item__count">Count on store ${this.product.amountOnStock}</p>
-    <button class="item__buy" id=${this.getHTMLId()}>Add to cart</button>
-    <button class ="item__description">
+    <button class="item__btn item__buy" id=${this.getHTMLId()}>Add to cart</button>
+    <button class ="item__btn item__description">
     <a id=href-${this.getHTMLId()}  href="#/products/${this.getHTMLId()}">
     Description
     </a></button>
