@@ -22,7 +22,8 @@ class Store implements IComponent {
         document.body.innerHTML = `
         <header class="header">
           <nav class="nav">
-            <img class="logo" src="" alt="logo">
+            <img class="logo" src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/blocks_logo.png" alt="logo">
+            <h1>LEGO STORE</h1>
           </nav>
         </header>
         <main class="main">
