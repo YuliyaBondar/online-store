@@ -2,11 +2,12 @@ import { LegoItem, Order } from "./types";
 import '../styles/basket.css';
 import { IBasket } from "../Store/IState";
 import { IComponent } from "./interfaces";
+import { AppState } from "../Store/AppState";
 
 export class Basket implements IComponent {
   orders:Order[]
-  constructor(orders: Order[]){
-    this.orders = orders;
+  constructor(){
+    this.orders = AppState.instance.state.basket.orders;
   }
 
   render () {

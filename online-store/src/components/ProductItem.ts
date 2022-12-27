@@ -2,6 +2,8 @@ import { isJSDocTypeExpression } from 'typescript';
 import '../styles/ProductItem.css';
 import { IComponent } from './interfaces';
 import {LegoItem} from './types'
+import { locationResolver } from '../appResolver';
+import { AppState, appState } from '../Store/AppState';
 export class ProductItem implements IComponent {
   product:LegoItem
   constructor(product: LegoItem){
@@ -17,7 +19,10 @@ getHTMLId = () => `${this.product.id}`;
     <p class="item__price">$${this.product.price}</p>
     <p class="item__count">Count on store ${this.product.amountOnStock}</p>
     <button class="item__buy" id=${this.getHTMLId()}>Add to cart</button>
-    <button class ="item__description">Description</button>
+    <button class ="item__description">
+    <a id=href-${this.getHTMLId()}  href="#/products/${this.getHTMLId()}">
+    Description
+    </a></button>
     </div>
     `
   }
@@ -27,5 +32,12 @@ getHTMLId = () => `${this.product.id}`;
     button?.addEventListener('click', ()=> {
       alert(`${this.product.name} add to basket`);
     });
+
+    const href = document.getElementById(`href-${this.getHTMLId()}`);
+    href?.addEventListener('click', () => {
+      console.log('goto location');
+      locationResolver(`#/products/${this.getHTMLId()}`, this.product);
+    })
+
 }
 }

@@ -1,3 +1,4 @@
+import { locationResolver } from './appResolver';
 import Store from './components/store';
 import { LegoItem } from './components/types';
 import './global.css';
@@ -19,7 +20,7 @@ class App {
     }
 
     async start() {
-        const store = new Store(appState);
+        const store = new Store();
         await store.render();
         await store.addEvents();
     }

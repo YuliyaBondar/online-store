@@ -1,8 +1,10 @@
 import {IState} from './IState';
+import { LegoItem } from '../components/types';
 
 const DEFAULT_STATE: IState = {
   basket: {
-   orders: [],
+   orders: [
+   ],
   },
   products: [],
 }

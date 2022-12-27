@@ -1,37 +1,38 @@
-import { LegoItem } from './types';
-import '../styles/store.css';
-import { ProductsList } from './productsList';
+import { AppState } from '../Store/AppState';
 import { Basket } from './Basket';
-import { AppState, appState } from '../Store/AppState';
 import { IComponent } from './interfaces';
+import { LegoItem } from './types';
 
-class Store implements IComponent {
-    productsList: ProductsList;
-    basket: Basket;
-    constructor() {
-        this.productsList = new ProductsList();
-        this.basket = new Basket();
+class DescriptionPage implements IComponent {
+  product: LegoItem;
+  basket: Basket;
+constructor(product: LegoItem) {
+  this.product = product;
+  this.basket = new Basket();
 
-    }
+}
 
-    async render() {
-        document.body.innerHTML = `
-        <header class="header">
+async render () {
+  document.body.innerHTML = `
+  <header class="header">
           <nav class="nav">
             <img class="logo" src="" alt="logo">
           </nav>
         </header>
         <main class="main">
-        <div class = "userParams">
-        <div class ="basket">
+        <div class="userParams">
+        <div class="basket">
         ${await this.basket.render()}
         </div>
-        <div class ="filters">
-        Фильтры TODO
         </div>
-        </div>
-        <div class = "products">
-        ${await this.productsList.render()}
+        <div class="mainProduct">
+        <p>${this.product.name}</p>
+        <div><img src="${this.product.urlImage[0]}" alt="product-photo"></div>
+        <div><img src="${this.product.urlImage[1]}" alt="product-photo"></div>
+        <p>${this.product.ageFrom}</p>
+        <p>${this.product.description}</p>
+        <p>$${this.product.price}</p>
+        <button>Add to cart</button>
         </div>
         </main>
         <footer class="footer">
@@ -43,15 +44,13 @@ class Store implements IComponent {
           <p>2022</p>
           <a href="https://rs.school/js/"><img class="footer__svg" src="https://raw.githubusercontent.com/YuliyaBondar/christmas-data/main/assets/svg/rss.svg" alt="rs_school_js"></a>
         </footer>
-      `
-      return '1';
-      ;
-    }
-
-    async addEvents () {
-      this.basket.addEvents();
-      this.productsList.addEvents();
-    };
+        `;
+    return '1';
 }
 
-export default Store;
+async addEvents () {
+
+}
+}
+
+export default DescriptionPage;
