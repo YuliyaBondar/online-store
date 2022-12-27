@@ -1,6 +1,4 @@
 import {IState} from './IState';
-import { LegoItem } from '../components/types';
-import App from '..';
 
 const DEFAULT_STATE: IState = {
   app: null,

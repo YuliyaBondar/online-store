@@ -50,6 +50,33 @@
   flex-wrap: wrap;
 }
 
+.bigView {
+  display: flex;
+  flex-direction: column;
+}
+
+.navSearchPanel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: 40px;
+  background-color: steelblue;
+}
+
+.mainNav{
+  background-color: blueviolet;
+}
+
+.search{
+  background-color: tomato;
+}
+
+.sortBy{
+  padding: 20px;
+  background-color: brown;
+}
 .userParams {
   display: flex;
   flex-direction: column;

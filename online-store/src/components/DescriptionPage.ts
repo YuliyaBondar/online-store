@@ -2,6 +2,7 @@ import { AppState } from '../Store/AppState';
 import { Basket } from './Basket';
 import { IComponent } from './interfaces';
 import { LegoItem } from './types';
+import '../styles/descriptionPage.css';
 
 class DescriptionPage implements IComponent {
   product: LegoItem;
@@ -13,6 +14,9 @@ constructor(product: LegoItem) {
 }
 
 async render () {
+  //TODO: создать отдельный копонент для блок описания товара!
+  //TODO: сделать нормальную верстку товара!
+  //TODO: реализовать компонент навигации!
   document.body.innerHTML = `
   <header class="header">
           <nav class="nav">
@@ -25,14 +29,20 @@ async render () {
         ${await this.basket.render()}
         </div>
         </div>
+        <div class="bigView">
+        <div class=navSearchPanel>
+        <div class = "mainNav">Реализовать компонент навигации</div>
+        <div class = "search">Реализовать компонент общего поиска</div>
+        </div>
         <div class="mainProduct">
         <p>${this.product.name}</p>
-        <div><img src="${this.product.urlImage[0]}" alt="product-photo"></div>
-        <div><img src="${this.product.urlImage[1]}" alt="product-photo"></div>
+        <div><img class="mainProduct__img" src="${this.product.urlImage[0]}" alt="product-photo"></div>
+        <div><img class="mainProduct__img" src="${this.product.urlImage[1]}" alt="product-photo"></div>
         <p>${this.product.ageFrom}</p>
         <p>${this.product.description}</p>
         <p>$${this.product.price}</p>
-        <button>Add to cart</button>
+        <button class = "mainProduct__buy">Add to cart</button>
+        </div>
         </div>
         </main>
         <footer class="footer">

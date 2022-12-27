@@ -11,6 +11,9 @@ export class Basket implements IComponent {
   }
 
   render () {
+    //TODO: сделать нормальную верстку
+    //TODO: реализовать компонент страницы заказа выбранных товарров
+    //TODO: реализовать переход  по кнопке на компонент страницы заказа выбранных товаров
     return `
     <p>In your basket are</p>
     <p>Number of orders: ${this.orders.length}<p>

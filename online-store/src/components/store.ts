@@ -15,6 +15,10 @@ class Store implements IComponent {
     }
 
     async render() {
+       //TODO: реализовать компонент навигации!
+        //TODO: реализовать нормальную верстку!
+        //TODO: реализовать компоненты фильтров! (по требованиям - две штуки!)
+        //TODO: реализовать компоненту сортировки выведенных товаров
         document.body.innerHTML = `
         <header class="header">
           <nav class="nav">
@@ -30,8 +34,15 @@ class Store implements IComponent {
         Фильтры TODO
         </div>
         </div>
-        <div class = "products">
+        <div class="bigView">
+        <div class=navSearchPanel>
+        <div class = "mainNav">Реализовать компонент навигации</div>
+        <div class = "search">Реализовать компонент общего поиска</div>
+        </div>
+        <div class ="sortBy">Sort by: TODO</div>
+        <div class ="products">
         ${await this.productsList.render()}
+        </div>
         </div>
         </main>
         <footer class="footer">
