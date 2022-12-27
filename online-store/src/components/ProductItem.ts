@@ -1,9 +1,11 @@
 import { isJSDocTypeExpression } from 'typescript';
 import '../styles/ProductItem.css';
 import { IComponent } from './interfaces';
-import {LegoItem} from './types'
+import {LegoItem, Order} from './types'
 import { locationResolver } from '../appResolver';
 import { AppState, appState } from '../Store/AppState';
+import Store from './store';
+import App from '..';
 export class ProductItem implements IComponent {
   product:LegoItem
   constructor(product: LegoItem){
@@ -30,7 +32,10 @@ getHTMLId = () => `${this.product.id}`;
   addEvents ()  {
     const button = document.getElementById(this.getHTMLId());
     button?.addEventListener('click', ()=> {
+      const order: Order = {legoItem: this.product , count:1};
+      AppState.instance.state.basket.orders.push(order);
       alert(`${this.product.name} add to basket`);
+      AppState.instance.state.app?.start();
     });
 
     const href = document.getElementById(`href-${this.getHTMLId()}`);
