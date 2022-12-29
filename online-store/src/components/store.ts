@@ -10,7 +10,7 @@ class Store implements IComponent {
     basket: Basket;
     constructor() {
         this.productsList = new ProductsList();
-        this.basket = new Basket();
+        this.basket = AppState.instance.state.basket;
     }
 
     async render() {
@@ -24,12 +24,12 @@ class Store implements IComponent {
             <img class="logo" src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/blocks_logo.png" alt="logo">
             <h1>LEGO STORE</h1>
           </nav>
+          <div>
+          </div>
+          ${await this.basket.render()}
         </header>
         <main class="main">
         <div class = "userParams">
-        <div class ="basket">
-        ${await this.basket.render()}
-        </div>
         <div class ="filters">
         Фильтры TODO
         </div>

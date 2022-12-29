@@ -13,6 +13,6 @@ export type LegoItem = {
 };
 
 export type Order = {
-    legoItem: LegoItem;
+    legoItem: number;
     count: number;
 };

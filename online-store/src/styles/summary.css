@@ -1,0 +1,4 @@
+.basket-design__summary {
+  display: flex;
+  flex-direction: column;
+}

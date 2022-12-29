@@ -5,29 +5,28 @@ import { LegoItem } from './types';
 import '../styles/descriptionPage.css';
 
 class DescriptionPage implements IComponent {
-    product: LegoItem;
-    basket: Basket;
-    constructor(product: LegoItem) {
-        this.product = product;
-        this.basket = new Basket();
-    }
+  product: LegoItem;
+  basket: Basket;
+  constructor(product: LegoItem) {
+    this.product = product;
+    this.basket = new Basket();
+  }
 
-    async render() {
-        //TODO: создать отдельный копонент для блок описания товара!
-        //TODO: сделать нормальную верстку товара!
-        //TODO: реализовать компонент навигации!
-        document.body.innerHTML = `
-  <header class="header">
-          <nav class="nav">
-            <img class="logo" src="" alt="logo">
-          </nav>
-        </header>
+  async render() {
+    //TODO: создать отдельный копонент для блок описания товара!
+    //TODO: сделать нормальную верстку товара!
+    //TODO: реализовать компонент навигации!
+    document.body.innerHTML = `
+    <header class="header">
+    <nav class="nav">
+      <img class="logo" src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/blocks_logo.png" alt="logo">
+      <h1>LEGO STORE</h1>
+    </nav>
+    <div>
+    </div>
+    ${await this.basket.render()}
+  </header>
         <main class="main">
-        <div class="userParams">
-        <div class="basket">
-        ${await this.basket.render()}
-        </div>
-        </div>
         <div class="bigView">
         <div class=navSearchPanel>
         <div class = "mainNav">Реализовать компонент навигации</div>
@@ -54,10 +53,10 @@ class DescriptionPage implements IComponent {
           <a href="https://rs.school/js/"><img class="footer__svg" src="https://raw.githubusercontent.com/YuliyaBondar/christmas-data/main/assets/svg/rss.svg" alt="rs_school_js"></a>
         </footer>
         `;
-        return '1';
-    }
+    return '1';
+  }
 
-    async addEvents() {}
+  async addEvents() {}
 }
 
 export default DescriptionPage;

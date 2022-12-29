@@ -1,17 +1,26 @@
 .basket {
-    width: 200px;
-    min-height: 200px;
-    padding-top: 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-size: 14px;
-    border: 2px solid gray;
+    font-size: 20px;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
 }
 
-.basket__byuButton {
-    width: 100px;
+.basket__logo {
+    background-color: transparent;
+    max-height: 100%;
+}
+
+.basket__count {
+    width: 30px;
     height: 30px;
-    background-color: #17a8b9;
-    cursor: pointer;
+    border-radius: 50%;
+    background-color: tomato;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0px;
 }

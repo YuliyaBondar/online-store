@@ -3,26 +3,38 @@ import '../styles/basket.css';
 import { IBasket } from '../Store/IState';
 import { IComponent } from './interfaces';
 import { AppState } from '../Store/AppState';
+import { locationResolver } from '../appResolver';
 
 export class Basket implements IComponent {
     orders: Order[];
     constructor() {
-        this.orders = AppState.instance.state.basket.orders;
+        this.orders = [];
     }
 
     render() {
-        //TODO: сделать нормальную верстку
-        //TODO: реализовать компонент страницы заказа выбранных товарров
-        //TODO: реализовать переход  по кнопке на компонент страницы заказа выбранных товаров
         return `
-    <p>In your basket are</p>
-    <p>Number of orders: ${this.orders.length}<p>
-    <p>Total cost: ${this.orders
+      <a class='basket' href="#/basket">
+      <img class="basket__logo" src="https://github.com/poznerrr/fakedb/blob/main/basket.png?raw=true" alt="basket-logo">
+      <div class="basket__count">
+      ${AppState.instance.state.basket.orders.reduce((acc, prev) => acc + prev.count, 0)}
+      </div>
+    </a>
+    `;
+    }
+
+    addEvents() {
+        const basketByuButton = document.getElementsByClassName('basket')[0];
+        basketByuButton.addEventListener('click', () => this.goToBasket());
+    }
+
+    goToBasket() {
+        locationResolver(`#/basket`, this);
+    }
+}
+
+/* TODO: В отдельный блок в хедер
+<p>Total cost: ${this.orders
         .map((item) => item.legoItem.price)
         .reduce((accum, item) => accum + item, 0)
         .toFixed(2)}$</p>
-    <button class="basket__byuButton">Go to buy</button>
-    `;
-    }
-    addEvents() {}
-}
+*/

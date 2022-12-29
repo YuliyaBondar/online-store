@@ -1,0 +1,47 @@
+.productCart {
+  border: 1px solif gray;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.productCart__index {
+  width: 30px;
+  border-radius: 5px;
+}
+
+.productCart__img > img {
+  height: 100px;
+  width: auto;
+}
+
+.productCart__desc {
+  display: flex;
+  flex-direction: column;
+}
+
+.productCart__adding-desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.productCard__entity {
+  display: flex;
+  flex-direction: column;
+}
+
+.productCard__plusMinusCount {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.plusMinusCount_button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid gray;
+  border-radius: 50%;
+  background-color: #17a8b9;
+  cursor: pointer;
+}
