@@ -1,3 +1,4 @@
+import { AppState, appState } from './Store/AppState';
 import { Basket } from './components/Basket';
 import BasketPage from './components/BasketPage';
 import DescriptionPage from './components/DescriptionPage';
@@ -9,7 +10,7 @@ export const locationResolver = async (location: string, callerObj: LegoItem | B
       await new DescriptionPage(<LegoItem>callerObj).render();
       break;
     case `#/basket`:
-      await new BasketPage().render();
+      await AppState.instance.state.app?.toBasket();
       break;
   }
 };

@@ -12,7 +12,7 @@ export class ProductItem implements IComponent {
   getHTMLId = () => `${this.product.id}`;
 
   render() {
-    //TODO: сделать нормальную верстку. Довать возможность выбора количества товара!
+    //TODO: сделать нормальную верстку.
     return `
     <div class="item">
     <h4 class="item__name">${this.product.name}</h4>
@@ -31,7 +31,7 @@ export class ProductItem implements IComponent {
   addEvents() {
     const button = document.getElementById(this.getHTMLId());
     button?.addEventListener('click', () => {
-      //TODO:  Добавить логику: если есть товар в корзине, то просто увеличить количество товара
+      //TODO:  Добавить логику: если есть товар в корзине, то сменить кнопку
       const order: Order = { legoItem: this.product.id, count: 1 };
       AppState.instance.state.basket.orders.push(order);
       alert(`${this.product.name} add to basket`);

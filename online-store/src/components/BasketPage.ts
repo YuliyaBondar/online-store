@@ -5,14 +5,14 @@ import '../styles/basketPage.css';
 import ProductsCarts from './ProductsCarts';
 
 class BasketPage implements IComponent {
-    basket: Basket;
-    productsCarts: ProductsCarts;
-    constructor() {
-        this.basket = AppState.instance.state.basket;
-        this.productsCarts = new ProductsCarts();
-    }
-    async render() {
-        document.body.innerHTML = `
+  basket: Basket;
+  productsCarts: ProductsCarts;
+  constructor() {
+    this.basket = AppState.instance.state.basket;
+    this.productsCarts = new ProductsCarts();
+  }
+  async render() {
+    document.body.innerHTML = `
         <header class="header">
           <nav class="nav">
             <img class="logo" src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/blocks_logo.png" alt="logo">
@@ -38,8 +38,10 @@ class BasketPage implements IComponent {
           <a href="https://rs.school/js/"><img class="footer__svg" src="https://raw.githubusercontent.com/YuliyaBondar/christmas-data/main/assets/svg/rss.svg" alt="rs_school_js"></a>
         </footer>
         `;
-    }
-    async addEvents() {}
+  }
+  async addEvents() {
+    this.productsCarts.addEvents();
+  }
 }
 
 export default BasketPage;
