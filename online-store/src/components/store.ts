@@ -11,11 +11,10 @@ class Store implements IComponent {
     constructor() {
         this.productsList = new ProductsList();
         this.basket = new Basket();
-
     }
 
     async render() {
-       //TODO: реализовать компонент навигации!
+        //TODO: реализовать компонент навигации!
         //TODO: реализовать нормальную верстку!
         //TODO: реализовать компоненты фильтров! (по требованиям - две штуки!)
         //TODO: реализовать компоненту сортировки выведенных товаров
@@ -55,15 +54,14 @@ class Store implements IComponent {
           <p>2022</p>
           <a href="https://rs.school/js/"><img class="footer__svg" src="https://raw.githubusercontent.com/YuliyaBondar/christmas-data/main/assets/svg/rss.svg" alt="rs_school_js"></a>
         </footer>
-      `
-      return '1';
-      ;
+      `;
+        return '1';
     }
 
-    async addEvents () {
-      this.basket.addEvents();
-      this.productsList.addEvents();
-    };
+    async addEvents() {
+        this.basket.addEvents();
+        this.productsList.addEvents();
+    }
 }
 
 export default Store;

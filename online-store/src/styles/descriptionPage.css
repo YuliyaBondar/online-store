@@ -1,13 +1,13 @@
 .mainProduct__img {
-  border: 3px solid #17a8b9;
-  width: auto;
-  height: 200px;
+    border: 3px solid #17a8b9;
+    width: auto;
+    height: 200px;
 }
 
 .mainProduct__buy {
-  width: 150px;
-  height: 70px;
-  margin-top: 10px;
-  background-color: #17a8b9;
-  cursor: pointer;
+    width: 150px;
+    height: 70px;
+    margin-top: 10px;
+    background-color: #17a8b9;
+    cursor: pointer;
 }

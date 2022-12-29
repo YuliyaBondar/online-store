@@ -1,17 +1,17 @@
 .basket {
-  width:200px;
-  min-height: 200px;
-  padding-top: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 14px;
-  border: 2px solid gray;
+    width: 200px;
+    min-height: 200px;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    border: 2px solid gray;
 }
 
 .basket__byuButton {
-width: 100px;
-height: 30px;
-background-color: #17a8b9;
-cursor: pointer;
+    width: 100px;
+    height: 30px;
+    background-color: #17a8b9;
+    cursor: pointer;
 }

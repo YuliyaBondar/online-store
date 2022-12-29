@@ -16,18 +16,13 @@ fetch(dataSource)
     });
 
 export class App {
-
-    constructor() {
-    }
+    constructor() {}
 
     async start() {
         const store = new Store();
         await store.render();
         await store.addEvents();
     }
-
-
-
 }
 
 export default App;

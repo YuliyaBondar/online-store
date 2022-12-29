@@ -5,19 +5,18 @@ import { LegoItem } from './types';
 import '../styles/descriptionPage.css';
 
 class DescriptionPage implements IComponent {
-  product: LegoItem;
-  basket: Basket;
-constructor(product: LegoItem) {
-  this.product = product;
-  this.basket = new Basket();
+    product: LegoItem;
+    basket: Basket;
+    constructor(product: LegoItem) {
+        this.product = product;
+        this.basket = new Basket();
+    }
 
-}
-
-async render () {
-  //TODO: создать отдельный копонент для блок описания товара!
-  //TODO: сделать нормальную верстку товара!
-  //TODO: реализовать компонент навигации!
-  document.body.innerHTML = `
+    async render() {
+        //TODO: создать отдельный копонент для блок описания товара!
+        //TODO: сделать нормальную верстку товара!
+        //TODO: реализовать компонент навигации!
+        document.body.innerHTML = `
   <header class="header">
           <nav class="nav">
             <img class="logo" src="" alt="logo">
@@ -55,12 +54,10 @@ async render () {
           <a href="https://rs.school/js/"><img class="footer__svg" src="https://raw.githubusercontent.com/YuliyaBondar/christmas-data/main/assets/svg/rss.svg" alt="rs_school_js"></a>
         </footer>
         `;
-    return '1';
-}
+        return '1';
+    }
 
-async addEvents () {
-
-}
+    async addEvents() {}
 }
 
 export default DescriptionPage;
