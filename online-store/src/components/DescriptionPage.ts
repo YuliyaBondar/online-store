@@ -22,8 +22,7 @@ class DescriptionPage implements IComponent {
       <img class="logo" src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/blocks_logo.png" alt="logo">
       <h1>LEGO STORE</h1>
     </nav>
-    <div>
-    </div>
+    <p>Cart total: $${AppState.summaryCosts()}</p>
     ${await this.basket.render()}
   </header>
         <main class="main">
