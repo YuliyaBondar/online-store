@@ -1,13 +1,10 @@
-import { AppState } from '../Store/AppState';
-import { IComponent } from './interfaces';
-import '../styles/summary.css';
 import { promos } from './constants';
+import { IComponent } from './interfaces';
+
+import { AppState } from '../Store/AppState';
+import '../styles/summary.css';
 
 class Summary implements IComponent {
-  legoItemCosts: number[] = [];
-  summaryCost: number = 100;
-  appliedPromo = [];
-
   constructor() {}
   async render() {
     return `
@@ -32,6 +29,7 @@ class Summary implements IComponent {
     </div>
     `;
   }
+
   async addEvents() {
     const summaryInputPromo = document.getElementsByClassName('summary__input-promo')[0];
     summaryInputPromo?.addEventListener('input', (e) => this.searchPromo(e));
