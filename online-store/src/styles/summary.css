@@ -1,4 +1,28 @@
 .basket-design__summary {
+  border: 1px solid gray;
+  margin: 30px;
   display: flex;
   flex-direction: column;
+}
+
+.summary > * {
+  margin-top: 40px;
+}
+
+.summary__items > * {
+  margin-top: 10px;
+}
+
+.summary__buy {
+  width: 270px;
+  height: 30px;
+
+  background-color: #17a8b9;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.summary__input-promo {
+  width: 100%;
+  height: 30px;
 }

@@ -43,6 +43,7 @@ class BasketPage implements IComponent {
   }
   async addEvents() {
     this.productsCarts.addEvents();
+    this.summary.addEvents();
   }
 }
 
