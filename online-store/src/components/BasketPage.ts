@@ -3,13 +3,16 @@ import { Basket } from './Basket';
 import { IComponent } from './interfaces';
 import '../styles/basketPage.css';
 import ProductsCarts from './ProductsCarts';
+import Summary from './Summary';
 
 class BasketPage implements IComponent {
   basket: Basket;
   productsCarts: ProductsCarts;
+  summary: Summary;
   constructor() {
     this.basket = AppState.instance.state.basket;
     this.productsCarts = new ProductsCarts();
+    this.summary = new Summary();
   }
   async render() {
     document.body.innerHTML = `
@@ -18,14 +21,13 @@ class BasketPage implements IComponent {
             <img class="logo" src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/blocks_logo.png" alt="logo">
             <h1>LEGO STORE</h1>
           </nav>
-          <div>
-          </div>
+          <p>Cart total: $${AppState.summaryCosts()}</p>
           ${await this.basket.render()}
         </header>
         <main class="main">
           <div class="basket-design">
             ${await this.productsCarts.render()}
-            ${await AppState.instance.state.summary.render()}
+            ${await this.summary.render()}
           </div>
         </main>
         <footer class="footer">

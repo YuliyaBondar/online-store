@@ -6,30 +6,30 @@ import { AppState } from '../Store/AppState';
 import { locationResolver } from '../appResolver';
 
 export class Basket implements IComponent {
-    orders: Order[];
-    constructor() {
-        this.orders = [];
-    }
+  orders: Order[];
+  constructor() {
+    this.orders = [];
+  }
 
-    render() {
-        return `
+  render() {
+    return `
       <a class='basket' href="#/basket">
       <img class="basket__logo" src="https://github.com/poznerrr/fakedb/blob/main/basket.png?raw=true" alt="basket-logo">
       <div class="basket__count">
-      ${AppState.instance.state.basket.orders.reduce((acc, prev) => acc + prev.count, 0)}
+      ${AppState.countProducts()}
       </div>
     </a>
     `;
-    }
+  }
 
-    addEvents() {
-        const basketByuButton = document.getElementsByClassName('basket')[0];
-        basketByuButton.addEventListener('click', () => this.goToBasket());
-    }
+  addEvents() {
+    const basketByuButton = document.getElementsByClassName('basket')[0];
+    basketByuButton.addEventListener('click', () => this.goToBasket());
+  }
 
-    goToBasket() {
-        locationResolver(`#/basket`, this);
-    }
+  goToBasket() {
+    locationResolver(`#/basket`, this);
+  }
 }
 
 /* TODO: В отдельный блок в хедер

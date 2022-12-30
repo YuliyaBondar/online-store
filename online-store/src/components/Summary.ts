@@ -3,6 +3,10 @@ import { IComponent } from './interfaces';
 import '../styles/summary.css';
 
 class Summary implements IComponent {
+  legoItemCosts: number[] = [];
+  summaryCost: number = 100;
+  appliedPromo = [];
+
   constructor() {}
   async render() {
     return `
@@ -11,8 +15,8 @@ class Summary implements IComponent {
             Summary
           </div>
           <div>
-          <p>Products:</p>
-          <p>Total:</p>
+          <p>Products:  ${AppState.countProducts()}</p>
+          <p>Total: ${AppState.summaryCosts()}</p>
           <p>Total:</p>
           <div>
           <p>Applied codes</p>

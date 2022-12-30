@@ -8,7 +8,6 @@ const DEFAULT_STATE: IState = {
   store: null,
   basket: new Basket(),
   products: [],
-  summary: new Summary(),
 };
 
 export class AppState {
@@ -25,6 +24,20 @@ export class AppState {
     AppState.isExist = true;
     AppState.instance = this;
   }
+
+  static countProducts = () => {
+    return this.instance.state.basket.orders.reduce((acc, prev) => acc + prev.count, 0);
+  };
+
+  static summaryCosts = () => {
+    const legoOrdersMoney: number[] = [];
+    this.instance.state.basket.orders.forEach((order) => {
+      this.instance.state.products.filter((product) => {
+        if (product.id === order.legoItem) legoOrdersMoney.push(product.price * order.count);
+      });
+    });
+    return legoOrdersMoney.reduce((acc, prev) => acc + prev, 0).toFixed(2);
+  };
 }
 
 export const appState = new AppState();

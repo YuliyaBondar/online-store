@@ -6,26 +6,25 @@ import { AppState, appState } from '../Store/AppState';
 import { IComponent } from './interfaces';
 
 class Store implements IComponent {
-    productsList: ProductsList;
-    basket: Basket;
-    constructor() {
-        this.productsList = new ProductsList();
-        this.basket = AppState.instance.state.basket;
-    }
+  productsList: ProductsList;
+  basket: Basket;
+  constructor() {
+    this.productsList = new ProductsList();
+    this.basket = AppState.instance.state.basket;
+  }
 
-    async render() {
-        //TODO: реализовать компонент навигации!
-        //TODO: реализовать нормальную верстку!
-        //TODO: реализовать компоненты фильтров! (по требованиям - две штуки!)
-        //TODO: реализовать компоненту сортировки выведенных товаров
-        document.body.innerHTML = `
+  async render() {
+    //TODO: реализовать компонент навигации!
+    //TODO: реализовать нормальную верстку!
+    //TODO: реализовать компоненты фильтров! (по требованиям - две штуки!)
+    //TODO: реализовать компоненту сортировки выведенных товаров
+    document.body.innerHTML = `
         <header class="header">
           <nav class="nav">
             <img class="logo" src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/blocks_logo.png" alt="logo">
             <h1>LEGO STORE</h1>
           </nav>
-          <div>
-          </div>
+          <p>Cart total: $${AppState.summaryCosts()}</p>
           ${await this.basket.render()}
         </header>
         <main class="main">
@@ -55,13 +54,13 @@ class Store implements IComponent {
           <a href="https://rs.school/js/"><img class="footer__svg" src="https://raw.githubusercontent.com/YuliyaBondar/christmas-data/main/assets/svg/rss.svg" alt="rs_school_js"></a>
         </footer>
       `;
-        return '1';
-    }
+    return '1';
+  }
 
-    async addEvents() {
-        this.basket.addEvents();
-        this.productsList.addEvents();
-    }
+  async addEvents() {
+    this.basket.addEvents();
+    this.productsList.addEvents();
+  }
 }
 
 export default Store;
