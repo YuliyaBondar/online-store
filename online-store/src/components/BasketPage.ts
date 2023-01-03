@@ -1,9 +1,11 @@
-import { AppState } from '../Store/AppState';
 import { Basket } from './Basket';
-import { IComponent } from './interfaces';
-import '../styles/basketPage.css';
-import ProductsCarts from './ProductsCarts';
 import Summary from './Summary';
+import { IComponent } from './interfaces';
+import ProductsCarts from './ProductsCarts';
+
+import { AppState } from '../Store/AppState';
+
+import '../styles/basketPage.css';
 
 class BasketPage implements IComponent {
   basket: Basket;

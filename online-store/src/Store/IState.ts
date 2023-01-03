@@ -10,7 +10,7 @@ export interface IState {
   store: Store | null;
   basket: Basket;
   products: LegoItem[];
-  promos: string[];
+  promos: Promo[];
   inputPromo: string;
 }
 

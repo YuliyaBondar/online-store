@@ -40,6 +40,15 @@ export class AppState {
     });
     return legoOrdersMoney.reduce((acc, prev) => acc + prev, 0).toFixed(2);
   };
+
+  static summaryWithSales = () => {
+    return (
+      Number(this.summaryCosts()) -
+      (Number(this.summaryCosts()) *
+        this.instance.state.promos.map((item) => item.discount).reduce((acc, prev) => acc + prev, 0)) /
+        100
+    ).toFixed(2);
+  };
 }
 
 export const appState = new AppState();
