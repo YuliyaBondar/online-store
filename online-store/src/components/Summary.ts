@@ -32,15 +32,15 @@ class Summary implements IComponent {
   }
 
   async addEvents() {
-    const summaryInputPromo = document.getElementsByClassName('summary__input-promo')[0];
+    const summaryInputPromo = document.querySelector('.summary__input-promo');
     (<HTMLInputElement>summaryInputPromo).value = AppState.instance.state.inputPromo;
     const event = new Event('input');
     summaryInputPromo?.addEventListener('input', (e) => this.searchPromo(e));
-    summaryInputPromo.dispatchEvent(event);
+    summaryInputPromo?.dispatchEvent(event);
   }
 
   searchPromo(e: Event) {
-    const summarySearched = document.getElementsByClassName('summary__searched')[0];
+    const summarySearched = document.querySelector('.summary__searched');
     let isPromo: boolean = false;
     AppState.instance.state.inputPromo = (<HTMLInputElement>e.target)?.value;
     promos.map((item) => {
@@ -48,7 +48,7 @@ class Summary implements IComponent {
         isPromo = true;
         const currentPromo = document.createElement('div');
         const currentPromoDescription = document.createElement('div');
-        currentPromoDescription.innerHTML = `${item.descripton} - ${item.discount}%`;
+        currentPromoDescription.innerHTML = `${item.description} - ${item.discount}%`;
         currentPromo.appendChild(currentPromoDescription);
         summarySearched?.appendChild(currentPromo);
         if (!(item.name in AppState.instance.state.promos)) {
@@ -64,7 +64,7 @@ class Summary implements IComponent {
       }
     });
     if (!isPromo) {
-      summarySearched.innerHTML = ``;
+      if (summarySearched) summarySearched.innerHTML = ``;
     }
   }
 }
