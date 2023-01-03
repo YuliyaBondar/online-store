@@ -9,8 +9,10 @@ class BasketPage implements IComponent {
   basket: Basket;
   productsCarts: ProductsCarts;
   summary: Summary;
+  basketRender: string;
   constructor() {
     this.basket = AppState.instance.state.basket;
+    this.basketRender = this.basket.render();
     this.productsCarts = new ProductsCarts();
     this.summary = new Summary();
   }
@@ -22,7 +24,7 @@ class BasketPage implements IComponent {
             <h1>LEGO STORE</h1>
           </nav>
           <p>Cart total: $${AppState.summaryCosts()}</p>
-          ${await this.basket.render()}
+          ${await this.basketRender}
         </header>
         <main class="main">
           <div class="basket-design">

@@ -20,4 +20,5 @@ export type Order = {
 export type Promo = {
   name: string;
   discount: number;
+  descripton: string;
 };

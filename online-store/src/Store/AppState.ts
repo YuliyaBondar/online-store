@@ -8,6 +8,8 @@ const DEFAULT_STATE: IState = {
   store: null,
   basket: new Basket(),
   products: [],
+  promos: [],
+  inputPromo: ``,
 };
 
 export class AppState {
