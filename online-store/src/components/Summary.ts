@@ -34,7 +34,29 @@ class Summary implements IComponent {
       </div>
     </div>
     <div class="basket-design__popap-wrapper basket-design__popap-wrapper_hidden">
-    <div class="basket-design__buy-popap"></div>
+    <div class="basket-design__buy-popap buy-popap">
+    <div class="buy-popap__header">
+      Personal Detail
+    </div>
+    <div class="buy-popap__name">
+      <input>
+    </div>
+    <div class="buy-popap__phone">
+      <input>
+    </div>
+    <div class="buy-popap__delivery">
+      <input>
+    </div>
+    <div class="buy-popap__email">
+      <input>
+    </div>
+    <div class="buy-popap__header">
+    Credit card details
+    </div>
+    <div class="buy-popap__card"></div>
+    <div class="buy-popap__errors"></div>
+    <button class="buy-popap__confirm">Confirm</button>
+    </div>
     </div>
     `;
   }
@@ -57,6 +79,11 @@ class Summary implements IComponent {
     popapWrapper?.addEventListener('click', (e: Event) => {
       if (e.target && (<HTMLElement>e.target).classList.contains('basket-design__popap-wrapper'))
         (<HTMLElement>e.target).classList.toggle('basket-design__popap-wrapper_hidden');
+    });
+
+    const popapConfirm = document.querySelector('.buy-popap__confirm');
+    popapConfirm?.addEventListener('click', () => {
+      this.checkConfirm();
     });
   }
 
@@ -110,6 +137,19 @@ class Summary implements IComponent {
   renderPopup() {
     const popapWrapper = document.querySelector('.basket-design__popap-wrapper');
     (<HTMLElement>popapWrapper).classList.toggle('basket-design__popap-wrapper_hidden');
+  }
+
+  checkConfirm() {
+    //TODO: сделать валидацию всех полей
+    const popap = document.querySelector('.basket-design__buy-popap');
+    if (true) {
+      (<HTMLElement>popap).innerHTML = `Congrats. Your buy is succesfull`;
+      setTimeout(() => {
+        AppState.instance.state.promos = [];
+        AppState.instance.state.basket.orders = [];
+        AppState.instance.state.app?.start();
+      }, 5000);
+    }
   }
 }
 
