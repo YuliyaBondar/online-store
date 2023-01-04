@@ -10,7 +10,9 @@ class ProductsCarts implements IComponent {
     this.carts = AppState.instance.state.basket.orders.map((item, index) => new ProductCart(index, item.legoItem));
   }
   async render() {
-    return `
+    if (AppState.countProducts() === 0) return ``;
+    else
+      return `
       <div class="basket-design__products-design products-design">
         <div class="products-design__header">
           Products in Cart

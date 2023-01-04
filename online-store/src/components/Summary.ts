@@ -12,7 +12,9 @@ class Summary implements IComponent {
     this.discountList = new DiscountList();
   }
   async render() {
-    return `
+    if (AppState.countProducts() === 0) return `<div class="basket-design__empty">No any products in cart</div>`;
+    else
+      return `
     <div class="basket-design__summary summary">
       <div class="summary__header">
         Summary

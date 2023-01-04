@@ -58,3 +58,8 @@
   margin: 20px 5px;
   color: goldenrod;
 }
+
+.basket-design__empty {
+  margin-top: auto;
+  margin-bottom: auto;
+}
