@@ -63,3 +63,28 @@
   margin-top: auto;
   margin-bottom: auto;
 }
+
+.basket-design__popap-wrapper {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.3);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.basket-design__popap-wrapper_hidden {
+  visibility: hidden;
+}
+
+.basket-design__buy-popap {
+  background-color: #17a8b9;
+  width: 40%;
+  height: 70%;
+  border: 5px solid gold;
+  border-radius: 10px;
+}

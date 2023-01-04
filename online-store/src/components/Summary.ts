@@ -33,6 +33,9 @@ class Summary implements IComponent {
       <button class="summary__buy">Buy now</button>
       </div>
     </div>
+    <div class="basket-design__popap-wrapper basket-design__popap-wrapper_hidden">
+    <div class="basket-design__buy-popap"></div>
+    </div>
     `;
   }
 
@@ -44,6 +47,17 @@ class Summary implements IComponent {
     summaryInputPromo?.dispatchEvent(event);
     await this.discountList.addEvents();
     this.renderWithSales();
+
+    const summaryBuy = document.querySelector('.summary__buy');
+    summaryBuy?.addEventListener('click', () => {
+      this.renderPopup();
+    });
+
+    const popapWrapper = document.querySelector('.basket-design__popap-wrapper');
+    popapWrapper?.addEventListener('click', (e: Event) => {
+      if (e.target && (<HTMLElement>e.target).classList.contains('basket-design__popap-wrapper'))
+        (<HTMLElement>e.target).classList.toggle('basket-design__popap-wrapper_hidden');
+    });
   }
 
   searchPromo(e: Event) {
@@ -91,6 +105,11 @@ class Summary implements IComponent {
       (<HTMLElement>summaryTotalDiscount).hidden = false;
       (<HTMLElement>summaryTotal)?.classList.add('summary__total_decorated');
     }
+  }
+
+  renderPopup() {
+    const popapWrapper = document.querySelector('.basket-design__popap-wrapper');
+    (<HTMLElement>popapWrapper).classList.toggle('basket-design__popap-wrapper_hidden');
   }
 }
 
