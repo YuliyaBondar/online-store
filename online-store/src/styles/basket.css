@@ -1,0 +1,26 @@
+.basket {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.basket__logo {
+    background-color: transparent;
+    max-height: 100%;
+}
+
+.basket__count {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: tomato;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0px;
+}

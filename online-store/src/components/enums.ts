@@ -1,15 +1,15 @@
-export enum LegoCategory  {
+export enum LegoCategory {
   City = 'city',
   Duplo = 'duplo',
   Technic = 'technic',
   Frozen = 'frozen',
-  Creator = 'creator'
-};
+  Creator = 'creator',
+}
 
 export enum LegoSize {
   Small = 'small',
-  Large = 'large'
-};
+  Large = 'large',
+}
 
 export enum Interest {
   Animals = 'animals',
@@ -22,5 +22,5 @@ export enum Interest {
   Space = 'space',
   Trains = 'trains',
   Travel = 'travel',
-  Vehicles = 'vehicles'
+  Vehicles = 'vehicles',
 }
