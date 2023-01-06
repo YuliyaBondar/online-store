@@ -20,10 +20,11 @@ export class ProductItem implements IComponent {
     <p class="item__price">$${this.product.price}</p>
     <p class="item__count">Count on store ${this.product.amountOnStock}</p>
     <button class="item__btn item__buy" id=${this.getHTMLId()}>Add to cart</button>
-    <button class ="item__btn item__description">
     <a id=href-${this.getHTMLId()}  href="#/products/${this.getHTMLId()}">
-    Description
-    </a></button>
+      <button class ="item__btn item__description">
+        Description
+      </button>
+    </a>
     </div>
     `;
   }
@@ -40,8 +41,7 @@ export class ProductItem implements IComponent {
 
     const href = document.getElementById(`href-${this.getHTMLId()}`);
     href?.addEventListener('click', () => {
-      console.log('goto location');
-      locationResolver(`#/products/${this.getHTMLId()}`, this.product);
+      locationResolver(`#/products/${this.getHTMLId()}`);
     });
   }
 }

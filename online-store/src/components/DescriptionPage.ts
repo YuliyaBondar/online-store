@@ -1,4 +1,4 @@
-import { AppState } from '../Store/AppState';
+import { AppState, appState } from '../Store/AppState';
 import { Basket } from './Basket';
 import { IComponent } from './interfaces';
 import { LegoItem } from './types';
@@ -9,7 +9,7 @@ class DescriptionPage implements IComponent {
   basket: Basket;
   constructor(product: LegoItem) {
     this.product = product;
-    this.basket = new Basket();
+    this.basket = appState.state.basket;
   }
 
   async render() {
@@ -18,10 +18,12 @@ class DescriptionPage implements IComponent {
     //TODO: реализовать компонент навигации!
     document.body.innerHTML = `
     <header class="header">
+    <a href ="#/">
     <nav class="nav">
       <img class="logo" src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/blocks_logo.png" alt="logo">
       <h1>LEGO STORE</h1>
     </nav>
+    </a>
     <p>Cart total: $${AppState.summaryCosts()}</p>
     ${await this.basket.render()}
   </header>

@@ -28,7 +28,7 @@ export class Basket implements IComponent {
   }
 
   goToBasket() {
-    locationResolver(`#/basket`, this);
+    locationResolver(`#/basket`);
   }
 }
 

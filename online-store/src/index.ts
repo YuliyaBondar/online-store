@@ -17,9 +17,22 @@ fetch(dataSource)
   });
 
 export class App {
+  private enableRouteChange() {
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash;
+      locationResolver(hash);
+    });
+  }
+
   constructor() {}
 
   async start() {
+    const hash = window.location.hash;
+    locationResolver(hash);
+    this.enableRouteChange();
+  }
+
+  async toStore() {
     const store = new Store();
     await store.render();
     await store.addEvents();

@@ -9,7 +9,7 @@ const DEFAULT_STATE: IState = {
   basket: new Basket(),
   products: [],
   promos: [],
-  inputPromo: ``,
+  inputPromo: '',
 };
 
 export class AppState {
