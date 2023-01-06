@@ -21,10 +21,12 @@ class BasketPage implements IComponent {
   async render() {
     document.body.innerHTML = `
         <header class="header">
+        <a href="#/">
           <nav class="nav">
             <img class="logo" src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/blocks_logo.png" alt="logo">
             <h1>LEGO STORE</h1>
           </nav>
+          </a>
           <p>Cart total: $${AppState.summaryCosts()}</p>
           ${await this.basketRender}
         </header>

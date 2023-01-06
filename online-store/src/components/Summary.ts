@@ -5,6 +5,7 @@ import DiscountList from './DiscountList';
 import { AppState } from '../Store/AppState';
 
 import '../styles/summary.css';
+import { locationResolver } from '../appResolver';
 
 class Summary implements IComponent {
   discountList: DiscountList;
@@ -93,7 +94,9 @@ class Summary implements IComponent {
 
   async addEvents() {
     const summaryInputPromo = document.querySelector('.summary__input-promo');
-    (<HTMLInputElement>summaryInputPromo).value = AppState.instance.state.inputPromo;
+    if (summaryInputPromo) {
+      (<HTMLInputElement>summaryInputPromo).value = AppState.instance.state.inputPromo;
+    }
     const event = new Event('input');
     summaryInputPromo?.addEventListener('input', (e) => this.searchPromo(e));
     summaryInputPromo?.dispatchEvent(event);
@@ -268,13 +271,13 @@ class Summary implements IComponent {
     const discountList = document.querySelector('.discount-list');
     const summaryTotalDiscount = document.querySelector('.summary__total-discount');
     const summaryTotal = document.querySelector('.summary__total');
-    if (AppState.instance.state.promos.length === 0) {
+    if (AppState.instance.state.promos.length === 0 && discountList) {
       (<HTMLElement>discountList).hidden = true;
-      (<HTMLElement>summaryTotalDiscount).hidden = true;
+      if (summaryTotalDiscount) (<HTMLElement>summaryTotalDiscount).hidden = true;
       (<HTMLElement>summaryTotal)?.classList.remove('summary__total_decorated');
     } else {
-      (<HTMLElement>discountList).hidden = false;
-      (<HTMLElement>summaryTotalDiscount).hidden = false;
+      if (discountList) (<HTMLElement>discountList).hidden = false;
+      if (summaryTotalDiscount) (<HTMLElement>summaryTotalDiscount).hidden = false;
       (<HTMLElement>summaryTotal)?.classList.add('summary__total_decorated');
     }
   }
@@ -300,7 +303,7 @@ class Summary implements IComponent {
       setTimeout(() => {
         AppState.instance.state.promos = [];
         AppState.instance.state.basket.orders = [];
-        AppState.instance.state.app?.start();
+        locationResolver('#/');
       }, 5000);
     }
   }
