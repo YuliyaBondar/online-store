@@ -14,8 +14,6 @@ class DescriptionPage implements IComponent {
   }
 
   async render() {
-    //TODO: создать отдельный копонент для блок описания товара!
-    //TODO: сделать нормальную верстку товара!
     document.body.innerHTML = `
     <header class="header">
     <a href ="#/">
@@ -35,9 +33,17 @@ class DescriptionPage implements IComponent {
         <div><img class="mainProduct__img" src="${this.product.urlImage[0]}" alt="product-photo"></div>
         <div><img class="mainProduct__img" src="${this.product.urlImage[1]}" alt="product-photo"></div>
         </div>
-        <p>${this.product.ageFrom}</p>
-        <p>${this.product.description}</p>
-        <p>$${this.product.price}</p>
+        <div class="mainProduct__description">
+        <p><span class="mainProduct__span">Name:</span>${this.product.name}</p>
+        <p><span class="mainProduct__span">Age:</span>${this.product.ageFrom}+</p>
+        <p><span class="mainProduct__span">Price:</span>$${this.product.price}</p>
+        <p><span class="mainProduct__span">Category:</span>${this.product.category}</p>
+        <p><span class="mainProduct__span">Details:</span>${this.product.numbOfDetails}</p>
+        <p><span class="mainProduct__span">Size of details:</span>${this.product.sizeOfDetails}</p>
+        <p><span class="mainProduct__span">Interests:</span>${this.product.interests}</p>
+        <p><span class="mainProduct__span">Amount on stock:</span>${this.product.amountOnStock}</p>
+        <p><span class="mainProduct__span">Description:</span>${this.product.description}</p>
+        </div>
         <div class="description__buttons">
         <button class = "description__button mainProduct__add">Add to cart</button>
         <button class = "description__button mainProduct__remove">Remove from cart</button>
