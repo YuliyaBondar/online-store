@@ -1,7 +1,17 @@
+.mainProduct__photos {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
 .mainProduct__img {
-  border: 3px solid #17a8b9;
+  border: 1px solid gold;
   width: auto;
   height: 200px;
+  background-color: gray;
+  cursor: nesw-resize;
 }
 
 .mainProduct__buy {
@@ -29,4 +39,15 @@
   border-radius: 35%;
   font-style: italic;
   font-weight: bold;
+}
+
+.resize-img {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  z-index: 5;
+  width: auto;
+  height: 60%;
+  cursor: auto;
+  transform: translateX(-50%);
 }

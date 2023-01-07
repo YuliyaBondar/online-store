@@ -31,9 +31,10 @@ class DescriptionPage implements IComponent {
         <div class="bigView">
         <div class = "mainNav crumbs"></div>
         <div class="mainProduct">
-        <p>${this.product.name}</p>
+        <div class="mainProduct__photos">
         <div><img class="mainProduct__img" src="${this.product.urlImage[0]}" alt="product-photo"></div>
         <div><img class="mainProduct__img" src="${this.product.urlImage[1]}" alt="product-photo"></div>
+        </div>
         <p>${this.product.ageFrom}</p>
         <p>${this.product.description}</p>
         <p>$${this.product.price}</p>
@@ -80,6 +81,18 @@ class DescriptionPage implements IComponent {
 
   async addEvents() {
     await this.renderCrumbs();
+    const images = document.querySelectorAll('.mainProduct__img');
+    images.forEach((img) => {
+      img.addEventListener('mouseover', () => this.addresize(img));
+      img.addEventListener('mouseleave', () => this.removeresize(img));
+    });
+  }
+
+  addresize(element: Element) {
+    element.classList.add('resize-img');
+  }
+  removeresize(element: Element) {
+    element.classList.remove('resize-img');
   }
 }
 
