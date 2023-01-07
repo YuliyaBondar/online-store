@@ -12,11 +12,12 @@ class BasketPage implements IComponent {
   productsCarts: ProductsCarts;
   summary: Summary;
   basketRender: string;
-  constructor() {
+  constructor(option: string = '') {
     this.basket = AppState.instance.state.basket;
     this.basketRender = this.basket.render();
     this.productsCarts = new ProductsCarts();
-    this.summary = new Summary();
+    if (option === 'design') this.summary = new Summary('design');
+    else this.summary = new Summary();
   }
   async render() {
     document.body.innerHTML = `
@@ -48,8 +49,8 @@ class BasketPage implements IComponent {
         `;
   }
   async addEvents() {
-    this.productsCarts.addEvents();
-    this.summary.addEvents();
+    await this.productsCarts.addEvents();
+    await this.summary.addEvents();
   }
 }
 

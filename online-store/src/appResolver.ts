@@ -1,8 +1,8 @@
 import { AppState, appState } from './Store/AppState';
-import { Basket } from './components/Basket';
 import DescriptionPage from './components/DescriptionPage';
 import { LegoItem } from './components/types';
-export const locationResolver = async (location: string) => {
+
+export const locationResolver = async (location: string, option: string = '') => {
   const units: string[] = location.split('/').filter((unit) => !!unit);
   console.log(units);
   switch (units.length) {
@@ -20,8 +20,13 @@ export const locationResolver = async (location: string) => {
       break;
     case 2:
       if (units[0] === '#' && units[1] === 'basket') {
-        window.location.hash = '#/basket';
-        await AppState.instance.state.app?.toBasket();
+        if (option === 'design') {
+          window.location.hash = '#/basket';
+          await AppState.instance.state.app?.toBasketDesign();
+        } else {
+          window.location.hash = '#/basket';
+          await AppState.instance.state.app?.toBasket();
+        }
       } else {
         console.log('404');
       }
@@ -31,7 +36,9 @@ export const locationResolver = async (location: string) => {
         let product: LegoItem[] = appState.state.products.filter((item) => item.id === Number(units[2]));
         if (product.length !== 0) {
           window.location.hash = `#/products/${units[2]}`;
-          await new DescriptionPage(product[0]).render();
+          const DESCRIPTION = new DescriptionPage(product[0]);
+          await DESCRIPTION.render();
+          await DESCRIPTION.addEvents();
         } else {
           console.log('404');
         }
