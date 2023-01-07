@@ -14,12 +14,24 @@
   cursor: nesw-resize;
 }
 
-.mainProduct__buy {
+.description__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.description__button {
+  display: block;
   width: 150px;
   height: 70px;
   margin-top: 10px;
   background-color: #17a8b9;
+  border-radius: 20px;
   cursor: pointer;
+}
+
+.mainProduct__remove {
+  background-color: tomato;
 }
 
 .mainNav.crumbs {
@@ -31,6 +43,10 @@
   padding: 15px;
   background-color: transparent;
   gap: 60px;
+}
+
+.hidden {
+  display: none;
 }
 
 .crumb {

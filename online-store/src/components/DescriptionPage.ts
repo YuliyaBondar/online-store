@@ -3,6 +3,7 @@ import { Basket } from './Basket';
 import { IComponent } from './interfaces';
 import { LegoItem } from './types';
 import '../styles/descriptionPage.css';
+import { locationResolver } from '../appResolver';
 
 class DescriptionPage implements IComponent {
   product: LegoItem;
@@ -15,7 +16,6 @@ class DescriptionPage implements IComponent {
   async render() {
     //TODO: создать отдельный копонент для блок описания товара!
     //TODO: сделать нормальную верстку товара!
-    //TODO: реализовать компонент навигации!
     document.body.innerHTML = `
     <header class="header">
     <a href ="#/">
@@ -38,7 +38,11 @@ class DescriptionPage implements IComponent {
         <p>${this.product.ageFrom}</p>
         <p>${this.product.description}</p>
         <p>$${this.product.price}</p>
-        <button class = "mainProduct__buy">Add to cart</button>
+        <div class="description__buttons">
+        <button class = "description__button mainProduct__add">Add to cart</button>
+        <button class = "description__button mainProduct__remove">Remove from cart</button>
+        <button class = "description__button mainProduct__buy">Buy now</button>
+        </div>
         </div>
         </div>
         </main>
@@ -86,6 +90,15 @@ class DescriptionPage implements IComponent {
       img.addEventListener('mouseover', () => this.addresize(img));
       img.addEventListener('mouseleave', () => this.removeresize(img));
     });
+    this.buttonChanger();
+    const btnAdd = document.querySelector('.mainProduct__add');
+    btnAdd?.addEventListener('click', () => {
+      this.goToBasket();
+    });
+    const btnRemove = document.querySelector('.mainProduct__remove');
+    btnRemove?.addEventListener('click', () => {
+      this.removeFromBasket();
+    });
   }
 
   addresize(element: Element) {
@@ -93,6 +106,30 @@ class DescriptionPage implements IComponent {
   }
   removeresize(element: Element) {
     element.classList.remove('resize-img');
+  }
+
+  buttonChanger() {
+    const btnAdd = document.querySelector('.mainProduct__add');
+    const btnRemove = document.querySelector('.mainProduct__remove');
+    if (AppState.instance.state.basket.orders.filter((item) => item.legoItem === this.product.id).length === 0) {
+      btnAdd?.classList.remove('hidden');
+      btnRemove?.classList.add('hidden');
+    } else {
+      btnAdd?.classList.add('hidden');
+      btnRemove?.classList.remove('hidden');
+    }
+  }
+
+  goToBasket() {
+    AppState.instance.state.basket.orders.push({ legoItem: this.product.id, count: 1 });
+    locationResolver(`#/products/${this.product.id}`);
+  }
+
+  removeFromBasket() {
+    AppState.instance.state.basket.orders = AppState.instance.state.basket.orders.filter(
+      (item) => item.legoItem !== this.product.id
+    );
+    locationResolver(`#/products/${this.product.id}`);
   }
 }
 
