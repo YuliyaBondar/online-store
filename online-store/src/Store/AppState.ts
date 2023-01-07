@@ -1,5 +1,6 @@
 import { Basket } from '../components/Basket';
 import ProductsCarts from '../components/ProductsCarts';
+import { Search } from '../components/search';
 import Summary from '../components/Summary';
 import { IState } from './IState';
 
@@ -7,6 +8,7 @@ const DEFAULT_STATE: IState = {
   app: null,
   store: null,
   basket: new Basket(),
+  search: new Search(),
   products: [],
   promos: [],
   inputPromo: ``,
