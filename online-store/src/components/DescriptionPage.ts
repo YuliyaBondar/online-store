@@ -91,19 +91,27 @@ class DescriptionPage implements IComponent {
 
   async addEvents() {
     await this.renderCrumbs();
+
     const images = document.querySelectorAll('.mainProduct__img');
     images.forEach((img) => {
       img.addEventListener('mouseover', () => this.addresize(img));
       img.addEventListener('mouseleave', () => this.removeresize(img));
     });
+
     this.buttonChanger();
     const btnAdd = document.querySelector('.mainProduct__add');
     btnAdd?.addEventListener('click', () => {
       this.goToBasket();
     });
+
     const btnRemove = document.querySelector('.mainProduct__remove');
     btnRemove?.addEventListener('click', () => {
       this.removeFromBasket();
+    });
+
+    const btnBuy = document.querySelector('.mainProduct__buy');
+    btnBuy?.addEventListener('click', () => {
+      this.buyNow();
     });
   }
 
@@ -136,6 +144,13 @@ class DescriptionPage implements IComponent {
       (item) => item.legoItem !== this.product.id
     );
     locationResolver(`#/products/${this.product.id}`);
+  }
+
+  buyNow() {
+    if (AppState.instance.state.basket.orders.filter((item) => item.legoItem === this.product.id).length === 0) {
+      AppState.instance.state.basket.orders.push({ legoItem: this.product.id, count: 1 });
+    }
+    locationResolver('#/basket', 'design');
   }
 }
 

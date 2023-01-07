@@ -17,8 +17,10 @@ class Summary implements IComponent {
   isValidCardNumber: boolean = false;
   isValidValid: boolean = false;
   isValidCVV: boolean = false;
-  constructor() {
+  option: string;
+  constructor(option: string = '') {
     this.discountList = new DiscountList();
+    this.option = option;
   }
   async render() {
     if (AppState.countProducts() === 0) return `<div class="basket-design__empty">No any products in cart</div>`;
@@ -34,7 +36,7 @@ class Summary implements IComponent {
         <p class=summary__total-discount>Total:$${AppState.summaryWithSales()}</p>
         ${await this.discountList.render()}
         <div>
-          <input class="summary__input-promo">
+          <input class="summary__input-promo" placeholder="INPUT PROMOCODE">
         </div>
         <div class="summary__searched"></div>
         <p class="summary__test-promo">Promo for test: 'LEGO', '2023'</p>
@@ -233,6 +235,7 @@ class Summary implements IComponent {
         this.isValidValid = true;
       }
     });
+    await this.designNow();
   }
 
   searchPromo(e: Event) {
@@ -267,7 +270,7 @@ class Summary implements IComponent {
     }
   }
 
-  renderWithSales() {
+  async renderWithSales() {
     const discountList = document.querySelector('.discount-list');
     const summaryTotalDiscount = document.querySelector('.summary__total-discount');
     const summaryTotal = document.querySelector('.summary__total');
@@ -282,7 +285,7 @@ class Summary implements IComponent {
     }
   }
 
-  renderPopup() {
+  async renderPopup() {
     const popapWrapper = document.querySelector('.basket-design__popap-wrapper');
     (<HTMLElement>popapWrapper).classList.toggle('basket-design__popap-wrapper_hidden');
   }
@@ -332,6 +335,14 @@ class Summary implements IComponent {
         (<HTMLImageElement>cardImg).src = ``;
         break;
     }
+  }
+
+  async designNow() {
+    setTimeout(() => {
+      if (this.option === 'design') {
+        this.renderPopup();
+      }
+    }, 300);
   }
 }
 

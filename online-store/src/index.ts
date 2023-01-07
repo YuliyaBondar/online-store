@@ -43,6 +43,12 @@ export class App {
     await basketPage.render();
     await basketPage.addEvents();
   }
+
+  async toBasketDesign() {
+    const basketPage = new BasketPage('design');
+    await basketPage.render();
+    await basketPage.addEvents();
+  }
 }
 
 export default App;

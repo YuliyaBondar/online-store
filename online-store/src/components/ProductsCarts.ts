@@ -17,7 +17,7 @@ class ProductsCarts implements IComponent {
         <div class="products-design__header">
           Products in Cart
         </div>
-        ${this.carts.map((item) => item.render())}
+        ${this.carts.map((item) => item.render()).join('')}
       </div>
       `;
   }
