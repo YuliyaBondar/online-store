@@ -4,13 +4,16 @@ import { ProductsList } from './productsList';
 import { Basket } from './Basket';
 import { AppState, appState } from '../Store/AppState';
 import { IComponent } from './interfaces';
+import { Search } from './search';
 
 class Store implements IComponent {
   productsList: ProductsList;
   basket: Basket;
+  search: Search;
   constructor() {
     this.productsList = new ProductsList();
     this.basket = AppState.instance.state.basket;
+    this.search = AppState.instance.state.search;
   }
 
   async render() {
@@ -38,7 +41,7 @@ class Store implements IComponent {
         <div class="bigView">
         <div class=navSearchPanel>
         <div class = "mainNav">Реализовать компонент навигации</div>
-        <div class = "search">Реализовать компонент общего поиска</div>
+        <div class = "searchComponent">${await this.search.render()}</div>
         </div>
         <div class ="sortBy">Sort by: TODO</div>
         <div class ="products">
@@ -62,6 +65,7 @@ class Store implements IComponent {
   async addEvents() {
     this.basket.addEvents();
     this.productsList.addEvents();
+    this.search.addEvents();
   }
 }
 
