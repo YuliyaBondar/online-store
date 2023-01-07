@@ -31,7 +31,9 @@ export const locationResolver = async (location: string) => {
         let product: LegoItem[] = appState.state.products.filter((item) => item.id === Number(units[2]));
         if (product.length !== 0) {
           window.location.hash = `#/products/${units[2]}`;
-          await new DescriptionPage(product[0]).render();
+          const DESCRIPTION = new DescriptionPage(product[0]);
+          await DESCRIPTION.render();
+          await DESCRIPTION.addEvents();
         } else {
           console.log('404');
         }

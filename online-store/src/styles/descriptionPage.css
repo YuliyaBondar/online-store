@@ -11,3 +11,22 @@
   background-color: #17a8b9;
   cursor: pointer;
 }
+
+.mainNav.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 15px;
+  background-color: transparent;
+  gap: 60px;
+}
+
+.crumb {
+  padding: 30px;
+  background-color: rgba(42, 79, 210, 0.2);
+  border-radius: 35%;
+  font-style: italic;
+  font-weight: bold;
+}

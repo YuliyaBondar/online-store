@@ -29,10 +29,7 @@ class DescriptionPage implements IComponent {
   </header>
         <main class="main">
         <div class="bigView">
-        <div class=navSearchPanel>
-        <div class = "mainNav">Реализовать компонент навигации</div>
-        <div class = "search">Реализовать компонент общего поиска</div>
-        </div>
+        <div class = "mainNav crumbs"></div>
         <div class="mainProduct">
         <p>${this.product.name}</p>
         <div><img class="mainProduct__img" src="${this.product.urlImage[0]}" alt="product-photo"></div>
@@ -57,7 +54,33 @@ class DescriptionPage implements IComponent {
     return '1';
   }
 
-  async addEvents() {}
+  async renderCrumbs() {
+    const crumbs = document.querySelector('.crumbs');
+    const globalCrumb = document.createElement('div');
+    globalCrumb.classList.add('crumb');
+    globalCrumb.innerText = `LEGO`;
+    crumbs?.appendChild(globalCrumb);
+    const firstCrumb = document.createElement('div');
+    firstCrumb.classList.add('crumb');
+    firstCrumb.innerText = ` > `;
+    crumbs?.appendChild(firstCrumb);
+    const themeCrumb = document.createElement('div');
+    themeCrumb.classList.add('crumb');
+    themeCrumb.innerText = `${this.product.category}`;
+    crumbs?.appendChild(themeCrumb);
+    const secondCrumb = document.createElement('div');
+    secondCrumb.classList.add('crumb');
+    secondCrumb.innerText = ` > `;
+    crumbs?.appendChild(secondCrumb);
+    const nameCrumb = document.createElement('div');
+    nameCrumb.classList.add('crumb');
+    nameCrumb.innerText = `${this.product.name}`;
+    crumbs?.appendChild(nameCrumb);
+  }
+
+  async addEvents() {
+    await this.renderCrumbs();
+  }
 }
 
 export default DescriptionPage;
