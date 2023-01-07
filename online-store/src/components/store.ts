@@ -63,6 +63,7 @@ class Store implements IComponent {
   async addEvents() {
     this.basket.addEvents();
     this.productsList.addEvents();
+    this.search.addEvents();
   }
 }
 

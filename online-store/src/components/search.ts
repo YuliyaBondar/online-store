@@ -1,14 +1,12 @@
-import { LegoItem, Order } from './types';
+import { LegoItem } from './types';
 import '../styles/search.css';
 import { IComponent } from './interfaces';
 import { AppState } from '../Store/AppState';
 
 export class Search implements IComponent {
-  products: LegoItem[] = [];
-  orders: Order[];
+  // products: LegoItem[] = [];
   constructor() {
-    this.orders = [];
-    this.products = AppState.instance.state.products;
+    // this.products = AppState.instance.state.products;
   }
 
   addEvents() {
@@ -26,12 +24,13 @@ export class Search implements IComponent {
   }
 
   searchToy() {
-    let filteredToysList: Array<LegoItem> = [...this.products];
+    let filteredToysList: Array<LegoItem> = [...AppState.instance.state.products];
     const searchElement = <HTMLInputElement>document.querySelector('.search');
     filteredToysList = filteredToysList.filter((toyItem) => {
       const substring: string = (<HTMLInputElement>searchElement).value.toUpperCase();
       const toyName: string = toyItem.name.toUpperCase();
       return toyName.includes(substring);
     });
+    console.log(filteredToysList)
   }
 }
