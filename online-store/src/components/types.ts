@@ -22,3 +22,13 @@ export type Promo = {
   discount: number;
   description: string;
 };
+
+export type Categories = {
+  city: boolean,
+  duplo: boolean,
+  technic: boolean,
+  frozen: boolean,
+  creator: boolean,
+}
+
+export type ValueItems<T> = { [x: string]: T };

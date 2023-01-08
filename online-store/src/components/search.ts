@@ -17,7 +17,7 @@ export class Search implements IComponent {
   render() {
     return `
       <div class="search__container">
-        <input class="search" type="search" autocomplete="off" placeholder="Поиск" autofocus="undefined">
+        <input class="search" type="search" autocomplete="off" placeholder="Search" autofocus="undefined">
         <button class="cross"></button>
       </div>
     `;

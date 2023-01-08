@@ -12,3 +12,13 @@ export const cardsUrl = {
   masterCard:
     'https://play-lh.googleusercontent.com/czro-ULAemRM1bMldf9gHQ7ajfa9NzKiZXFjI85mxawo60CaKMyHsjWaM38KHiZpsgY',
 };
+
+export const defaultSettings = {
+  chosenCategories: {
+    city: false,
+    duplo: false,
+    technic: false,
+    frozen: false,
+    creator: false,
+  }
+}
