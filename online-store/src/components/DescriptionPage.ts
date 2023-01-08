@@ -10,7 +10,7 @@ class DescriptionPage implements IComponent {
   basket: Basket;
   constructor(product: LegoItem) {
     this.product = product;
-    this.basket = appState.state.basket;
+    this.basket = AppState.instance.state.basket;
   }
 
   async render() {

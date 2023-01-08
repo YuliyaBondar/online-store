@@ -1,0 +1,14 @@
+.not-found__main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found__main > a {
+  font-weight: bold;
+  margin-left: 15px;
+  cursor: pointer;
+  color: gold;
+  font-size: 24px;
+  text-decoration: underline;
+}
