@@ -1,8 +1,10 @@
 import { AppState, appState } from './Store/AppState';
 import DescriptionPage from './components/DescriptionPage';
+import Page404 from './components/Page404';
 import { LegoItem } from './components/types';
 
 export const locationResolver = async (location: string, option: string = '') => {
+  const PAGE404 = new Page404().render();
   const units: string[] = location.split('/').filter((unit) => !!unit);
   console.log(units);
   switch (units.length) {
@@ -15,7 +17,7 @@ export const locationResolver = async (location: string, option: string = '') =>
         window.location.hash = '#/';
         AppState.instance.state.app?.toStore();
       } else {
-        console.log('404');
+        PAGE404;
       }
       break;
     case 2:
@@ -28,7 +30,7 @@ export const locationResolver = async (location: string, option: string = '') =>
           await AppState.instance.state.app?.toBasket();
         }
       } else {
-        console.log('404');
+        PAGE404;
       }
       break;
     case 3:
@@ -40,14 +42,14 @@ export const locationResolver = async (location: string, option: string = '') =>
           await DESCRIPTION.render();
           await DESCRIPTION.addEvents();
         } else {
-          console.log('404');
+          PAGE404;
         }
       } else {
-        console.log('404');
+        PAGE404;
       }
       break;
     default: {
-      console.log('404');
+      PAGE404;
     }
   }
 };
