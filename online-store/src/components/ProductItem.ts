@@ -1,9 +1,10 @@
-import { isJSDocTypeExpression } from 'typescript';
-import '../styles/ProductItem.css';
+import { AppState } from '../Store/AppState';
+import { locationResolver } from '../appResolver';
+
 import { IComponent } from './interfaces';
 import { LegoItem, Order } from './types';
-import { locationResolver } from '../appResolver';
-import { AppState, appState } from '../Store/AppState';
+
+import '../styles/ProductItem.css';
 export class ProductItem implements IComponent {
   product: LegoItem;
   constructor(product: LegoItem) {
@@ -12,7 +13,6 @@ export class ProductItem implements IComponent {
   getHTMLId = () => `${this.product.id}`;
 
   render() {
-    //TODO: сделать нормальную верстку.
     return `
     <div class="item">
     <h4 class="item__name">${this.product.name}</h4>
@@ -20,6 +20,7 @@ export class ProductItem implements IComponent {
     <p class="item__price">$${this.product.price}</p>
     <p class="item__count">Count on store ${this.product.amountOnStock}</p>
     <button class="item__btn item__buy" id=${this.getHTMLId()}>Add to cart</button>
+    <button class="item__btn item__btn_tomato item__remove" id="remove-${this.getHTMLId()}">Remove from cart</button>
     <a id=href-${this.getHTMLId()}  href="#/products/${this.getHTMLId()}">
       <button class ="item__btn item__description">
         Description
@@ -30,18 +31,48 @@ export class ProductItem implements IComponent {
   }
 
   addEvents() {
-    const button = document.getElementById(this.getHTMLId());
-    button?.addEventListener('click', () => {
-      //TODO:  Добавить логику: если есть товар в корзине, то сменить кнопку
-      const order: Order = { legoItem: this.product.id, count: 1 };
-      AppState.instance.state.basket.orders.push(order);
-      alert(`${this.product.name} add to basket`);
-      AppState.instance.state.app?.start();
+    this.isAddedChecker();
+
+    const addButton = document.getElementById(this.getHTMLId());
+    addButton?.addEventListener('click', () => {
+      this.addtoCart();
+    });
+
+    const removeBtn = document.getElementById(`remove-${this.getHTMLId()}`);
+    removeBtn?.addEventListener('click', () => {
+      this.removeFromCart();
     });
 
     const href = document.getElementById(`href-${this.getHTMLId()}`);
     href?.addEventListener('click', () => {
       locationResolver(`#/products/${this.getHTMLId()}`);
     });
+  }
+
+  isAddedChecker() {
+    const addBtn = document.getElementById(this.getHTMLId());
+    const removeBtn = document.getElementById(`remove-${this.getHTMLId()}`);
+    if (AppState.instance.state.basket.orders.filter((item) => item.legoItem === this.product.id).length === 0) {
+      addBtn?.classList.remove('hidden');
+      removeBtn?.classList.add('hidden');
+    } else {
+      addBtn?.classList.add('hidden');
+      removeBtn?.classList.remove('hidden');
+    }
+  }
+
+  removeFromCart() {
+    AppState.instance.state.basket.orders = AppState.instance.state.basket.orders.filter(
+      (item) => item.legoItem !== this.product.id
+    );
+    this.isAddedChecker();
+    AppState.instance.state.store?.renderHeader();
+  }
+
+  addtoCart() {
+    const order: Order = { legoItem: this.product.id, count: 1 };
+    AppState.instance.state.basket.orders.push(order);
+    this.isAddedChecker();
+    AppState.instance.state.store?.renderHeader();
   }
 }

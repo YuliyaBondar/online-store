@@ -6,6 +6,7 @@ import { LegoItem } from './components/types';
 export const locationResolver = async (location: string, option: string = '') => {
   const PAGE404 = new Page404().render();
   const units: string[] = location.split('/').filter((unit) => !!unit);
+
   console.log(units);
   switch (units.length) {
     case 0:

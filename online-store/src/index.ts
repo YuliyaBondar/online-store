@@ -34,6 +34,7 @@ export class App {
 
   async toStore() {
     const store = new Store();
+    AppState.instance.state.store = store;
     await store.render();
     await store.addEvents();
   }

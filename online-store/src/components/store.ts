@@ -1,10 +1,11 @@
-import { LegoItem } from './types';
-import '../styles/store.css';
+import { AppState } from '../Store/AppState';
+
 import { ProductsList } from './productsList';
 import { Basket } from './Basket';
-import { AppState, appState } from '../Store/AppState';
 import { IComponent } from './interfaces';
 import { Search } from './search';
+
+import '../styles/store.css';
 
 class Store implements IComponent {
   productsList: ProductsList;
@@ -18,7 +19,6 @@ class Store implements IComponent {
 
   async render() {
     //TODO: реализовать компонент навигации!
-    //TODO: реализовать нормальную верстку!
     //TODO: реализовать компоненты фильтров! (по требованиям - две штуки!)
     //TODO: реализовать компоненту сортировки выведенных товаров
     document.body.innerHTML = `
@@ -66,6 +66,21 @@ class Store implements IComponent {
     this.basket.addEvents();
     this.productsList.addEvents();
     this.search.addEvents();
+  }
+
+  async renderHeader() {
+    const header = document.querySelector('.header');
+    if (header)
+      header.innerHTML = `
+      <a href="#/">
+        <nav class="nav">
+          <img class="logo" src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/blocks_logo.png" alt="logo">
+          <h1>LEGO STORE</h1>
+        </nav>
+      </a>
+      <p>Cart total: $${AppState.summaryCosts()}</p>
+      ${await this.basket.render()}
+      `;
   }
 }
 
