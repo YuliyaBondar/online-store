@@ -25,4 +25,6 @@ export const defaultSettings = {
     small: false,
     large: false,
   },
+  priceRange: [7.99, 1458.99],
+  amountRange: [1, 8],
 }
