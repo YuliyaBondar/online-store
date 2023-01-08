@@ -31,4 +31,9 @@ export type Categories = {
   creator: boolean,
 }
 
+export type Sizes = {
+  small: boolean,
+  large: boolean,
+}
+
 export type ValueItems<T> = { [x: string]: T };

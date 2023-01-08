@@ -20,5 +20,9 @@ export const defaultSettings = {
     technic: false,
     frozen: false,
     creator: false,
-  }
+  },
+  chosenSizes: {
+    small: false,
+    large: false,
+  },
 }
