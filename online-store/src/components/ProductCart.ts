@@ -59,6 +59,7 @@ export class ProductCart implements IComponent {
     AppState.instance.state.basket.orders.map((order) =>
       order.legoItem === this.legoItem.id ? (order.count += 1) : this.legoItem.id
     );
+    AppState.instance.saveLocalStorageOrders();
     AppState.instance.state.app?.toBasket();
   }
 
@@ -72,6 +73,7 @@ export class ProductCart implements IComponent {
         order.legoItem === this.legoItem.id ? (order.count -= 1) : this.legoItem.id
       );
     }
+    AppState.instance.saveLocalStorageOrders();
     AppState.instance.state.app?.toBasket();
   }
 }

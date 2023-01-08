@@ -66,6 +66,7 @@ export class ProductItem implements IComponent {
       (item) => item.legoItem !== this.product.id
     );
     this.isAddedChecker();
+    AppState.instance.saveLocalStorageOrders();
     AppState.instance.state.store?.renderHeader();
   }
 
@@ -73,6 +74,7 @@ export class ProductItem implements IComponent {
     const order: Order = { legoItem: this.product.id, count: 1 };
     AppState.instance.state.basket.orders.push(order);
     this.isAddedChecker();
+    AppState.instance.saveLocalStorageOrders();
     AppState.instance.state.store?.renderHeader();
   }
 }

@@ -306,6 +306,7 @@ class Summary implements IComponent {
       setTimeout(() => {
         AppState.instance.state.promos = [];
         AppState.instance.state.basket.orders = [];
+        AppState.instance.saveLocalStorageOrders();
         locationResolver('#/');
       }, 5000);
     }

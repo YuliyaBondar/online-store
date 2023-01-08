@@ -1,7 +1,6 @@
 import { Basket } from '../components/Basket';
-import ProductsCarts from '../components/ProductsCarts';
 import { Search } from '../components/search';
-import Summary from '../components/Summary';
+
 import { IState } from './IState';
 
 const DEFAULT_STATE: IState = {
@@ -21,6 +20,7 @@ export class AppState {
   state = DEFAULT_STATE;
 
   constructor() {
+    this.state.basket.orders = localStorage.orders ? JSON.parse(localStorage.orders) : this.state.basket.orders;
     if (AppState.isExist) {
       return AppState.instance;
     }
@@ -51,6 +51,10 @@ export class AppState {
         100
     ).toFixed(2);
   };
+
+  saveLocalStorageOrders() {
+    localStorage.orders = JSON.stringify(this.state.basket.orders);
+  }
 }
 
 export const appState = new AppState();
