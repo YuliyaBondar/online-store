@@ -25,7 +25,6 @@
 
 .main {
   display: flex;
-  justify-content: center;
 
   row-gap: 113px;
   transition: all 1s ease-in-out;
@@ -76,6 +75,7 @@
 .bigView {
   display: flex;
   flex-direction: column;
+  width: calc(100vw - 200px);
 }
 
 .navSearchPanel {
