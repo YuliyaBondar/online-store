@@ -7,7 +7,7 @@ export class ProductsList implements IComponent {
   private products: LegoItem[] = [];
   productsComponents: ProductItem[];
   constructor() {
-    this.products = AppState.instance.state.products;
+    this.products = AppState.instance.state.filteredToyList;
     this.productsComponents = this.products.map((product) => new ProductItem(product));
   }
 

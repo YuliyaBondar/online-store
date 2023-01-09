@@ -13,6 +13,8 @@ const DEFAULT_STATE: IState = {
   products: [],
   promos: [],
   inputPromo: '',
+  filteredToyList: [],
+  searchInput: '',
 };
 
 export class AppState {

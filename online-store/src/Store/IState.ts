@@ -16,6 +16,8 @@ export interface IState {
   products: LegoItem[];
   promos: Promo[];
   inputPromo: string;
+  filteredToyList: LegoItem[];
+  searchInput: string;
 }
 
 export interface IBasket {

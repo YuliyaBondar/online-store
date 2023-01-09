@@ -11,6 +11,7 @@ fetch(dataSource)
   .then((response) => response.json())
   .then((data) => {
     AppState.instance.state.products = data;
+    AppState.instance.state.filteredToyList = data;
     const app = new App();
     AppState.instance.state.app = app;
     app.start();
