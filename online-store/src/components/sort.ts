@@ -26,6 +26,12 @@ export class Sort implements IComponent {
     });
     const sortItemsString = sortItems.join('');
 
+    // const options = document.querySelectorAll('.sort__option');
+    // options.forEach((item, index) => {
+    //   if (item.textContent === AppState.instance.state.sortKey)
+    //     (<HTMLElement>item).setAttribute('selected', 'selected');
+    // });
+
     return `
       <div class="sort__container">
         <select class="sort__select">

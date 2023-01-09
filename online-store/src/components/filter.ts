@@ -67,6 +67,24 @@ export class Filter implements IComponent {
       AppState.instance.state.amountRange[1] = +(<HTMLInputElement>amountRegulator).value;
       this.filterToys();
     });
+
+    const resetButton = document.querySelector('.reset');
+    (<HTMLInputElement>resetButton).addEventListener('click', () => {
+      Object.keys(AppState.instance.state.chosenCategories).forEach((key) => {
+        AppState.instance.state.chosenCategories[key as keyof Categories] = false;
+      })
+      Object.keys(AppState.instance.state.chosenSizes).forEach((key) => {
+        AppState.instance.state.chosenSizes[key as keyof Sizes] = false;
+      })
+      Object.keys(AppState.instance.state.chosenNames).forEach((key) => {
+        AppState.instance.state.chosenNames[key as keyof Names] = false;
+      })
+      AppState.instance.state.priceRange = [7.99, 1458.99];
+      AppState.instance.state.amountRange = [1, 8];
+
+      AppState.instance.state.filteredToyList = AppState.instance.state.products;
+      AppState.instance.state.app?.toStore();
+    });
   }
 
   render() {
@@ -109,6 +127,7 @@ export class Filter implements IComponent {
     const nameItemsString = nameItems.join('');
 
     return `
+      <button class="reset">Reset</button>
       <h3>Category</h3>
       <div class="category_container">
         ${categoryItemsString}
