@@ -5,10 +5,7 @@ import { AppState } from '../Store/AppState';
 import { sortOptionsEnum } from './enums';
 
 export class Sort implements IComponent {
-  // products: LegoItem[] = [];
-  constructor() {
-    // this.products = AppState.instance.state.products;
-  }
+  constructor() {}
 
   addEvents() {
     const sortSelect = document.querySelector('.sort__select');
@@ -25,8 +22,6 @@ export class Sort implements IComponent {
         Object.entries(sortOptionsEnum)[index][1]
       }</option>
       `;
-      // if (Object.entries(sortOptionsEnum)[index][0] === AppState.instance.state.sortKey)
-      //   sortItem.setAttribute('selected', 'selected');
       return sortItem;
     });
     const sortItemsString = sortItems.join('');

@@ -6,6 +6,7 @@ import { IComponent } from './interfaces';
 import { Search } from './search';
 
 import '../styles/store.css';
+import '../styles/productItem.css';
 import { Filter } from './filter';
 import { LegoItem } from './types';
 
@@ -47,10 +48,14 @@ class Store implements IComponent {
         <div class=navSearchPanel>
           <div class = "sortComponent">${await this.sort.render()}</div>
           <div>Found: ${this.products.length}</div>
-          <div class = "searchComponent">${await this.search.render()}</div>          
+          <div class = "searchComponent">${await this.search.render()}</div>
+          <div class="viewComponent">
+            <img src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/plitka.png" alt="plitka" class="view_img plitka">
+            <img src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/list.png" alt="list" class="view_img list">
+          </div>
         </div>
         <div class ="products">
-        ${await this.productsList.render()}
+          ${await this.productsList.render()}
         </div>
         </div>
         </main>
@@ -73,6 +78,20 @@ class Store implements IComponent {
     this.search.addEvents();
     this.filter.addEvents();
     this.sort.addEvents();
+    
+    const viewPlitka = document.querySelector('.plitka');
+    const viewList = document.querySelector('.list');
+    const productItems = document.querySelectorAll('.item');
+    (<HTMLImageElement>viewPlitka).addEventListener('click', () => {
+      productItems.forEach((item) => {
+        item.classList.remove('item_row');
+      });
+    });
+    (<HTMLImageElement>viewList).addEventListener('click', () => {
+      productItems.forEach((item) => {
+        item.classList.add('item_row');
+      });
+    });
   }
 
   async renderHeader() {
