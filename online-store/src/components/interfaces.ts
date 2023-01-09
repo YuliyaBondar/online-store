@@ -1,4 +1,4 @@
-import { Categories, Sizes } from "./types";
+import { Categories, Names, Sizes } from "./types";
 
 export interface IComponent {
   render: () => string | Promise<string> | void | Promise<void>;
@@ -8,6 +8,7 @@ export interface IComponent {
 export interface ISettings {
   chosenCategories: Categories;
   chosenSizes: Sizes;
+  chosenNames: Names;
   priceRange: Array<number>;
   amountRange: Array<number>;
 }

@@ -7,6 +7,7 @@ import { Search } from './search';
 
 import '../styles/store.css';
 import { Filter } from './filter';
+import { LegoItem } from './types';
 
 class Store implements IComponent {
   [x: string]: any;
@@ -14,17 +15,16 @@ class Store implements IComponent {
   basket: Basket;
   search: Search;
   filter: Filter;
+  private products: LegoItem[] = [];
   constructor() {
     this.productsList = new ProductsList();
     this.basket = AppState.instance.state.basket;
     this.search = AppState.instance.state.search;
     this.filter = AppState.instance.state.filter;
+    this.products = AppState.instance.state.filteredToyList;
   }
 
   async render() {
-    //TODO: реализовать компонент навигации!
-    //TODO: реализовать компоненты фильтров! (по требованиям - две штуки!)
-    //TODO: реализовать компоненту сортировки выведенных товаров
     document.body.innerHTML = `
         <header class="header">
         <a href="#/">
@@ -44,10 +44,9 @@ class Store implements IComponent {
         </div>
         <div class="bigView">
         <div class=navSearchPanel>
-        <div class = "mainNav">Реализовать компонент навигации</div>
-        <div class = "searchComponent">${await this.search.render()}</div>
+          <div>Found: ${this.products.length}</div>
+          <div class = "searchComponent">${await this.search.render()}</div>          
         </div>
-        <div class ="sortBy">Sort by: TODO</div>
         <div class ="products">
         ${await this.productsList.render()}
         </div>

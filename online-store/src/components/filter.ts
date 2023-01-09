@@ -1,9 +1,9 @@
-import { Categories, LegoItem, Sizes, ValueItems } from './types';
+import { Categories, LegoItem, Names, Sizes, ValueItems } from './types';
 import '../styles/filter.css';
 import { IComponent } from './interfaces';
 import { AppState } from '../Store/AppState';
 import { defaultSettings } from './constants';
-import { LegoCategory, LegoSize } from './enums';
+import { LegoCategory, LegoName, LegoSize } from './enums';
 
 export class Filter implements IComponent {
   constructor() {}
@@ -29,6 +29,18 @@ export class Filter implements IComponent {
         const currentValue: boolean = defaultSettings.chosenSizes[currentKey as keyof Sizes];
         defaultSettings.chosenSizes[currentKey as keyof Sizes] = !currentValue;
         sizeItem.classList.toggle('active');
+        this.filterToys();
+      });
+    });
+
+    const nameItems = document.querySelectorAll('.nameItem');
+    nameItems.forEach((nameItem, index) => {
+      const currentKey: string = Object.values(LegoName)[index];
+      if (defaultSettings.chosenNames[currentKey as keyof Names]) nameItem.classList.add('active');
+      nameItem.addEventListener('click', () => {
+        const currentValue: boolean = defaultSettings.chosenNames[currentKey as keyof Names];
+        defaultSettings.chosenNames[currentKey as keyof Names] = !currentValue;
+        nameItem.classList.toggle('active');
         this.filterToys();
       });
     });
@@ -73,6 +85,18 @@ export class Filter implements IComponent {
     });
     const sizeItemsString = sizeItems.join('');
 
+    const nameItems = new Array(Object.keys(defaultSettings.chosenNames).length).fill(null).map((_, index) => {
+      const currentKey: string = Object.values(LegoName)[index];
+      const nameItem = `
+      <div>
+          <input type="checkbox" name="name" id="${currentKey}" class="nameItem name_${currentKey}">
+          <label for="${currentKey}">${currentKey}</label>
+        </div>
+    `;
+      return nameItem;
+    });
+    const nameItemsString = nameItems.join('');
+
     return `
       <h3>Category</h3>
       <div class="category_container">
@@ -81,6 +105,10 @@ export class Filter implements IComponent {
       <h3>Size</h3>
       <div class="size_container">
         ${sizeItemsString}
+      </div>
+      <h3>Name</h3>
+      <div class="name_container">
+        ${nameItemsString}
       </div>
       <h3>Price</h3>
       <input type="range" value="1" min="7.99" max="1458.99" step="1" class="price_regulator">
@@ -109,6 +137,16 @@ export class Filter implements IComponent {
           (pair) => pair[1]
         );
         return !!filteredPairs.find((pair) => pair[0] === toyItem.sizeOfDetails);
+      }
+      return true;
+    });
+
+    filteredToysList = filteredToysList.filter((toyItem) => {
+      if (checkPropList(defaultSettings.chosenNames)) {
+        const filteredPairs: Array<[string, boolean]> = Object.entries(defaultSettings.chosenNames).filter(
+          (pair) => pair[1]
+        );
+        return !!filteredPairs.find((pair) => pair[0] === toyItem.name);
       }
       return true;
     });

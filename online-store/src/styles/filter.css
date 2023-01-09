@@ -20,6 +20,22 @@ h3 {
   row-gap: 10px;
 }
 
+.name_container {
+  padding: 10px;
+  margin-bottom: 20px;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  line-height: 20px;
+
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+
+  overflow-y: auto;
+}
+
 .price_regulator,
 .amount_regulator {
   margin-bottom: 20px;
