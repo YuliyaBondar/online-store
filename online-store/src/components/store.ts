@@ -58,6 +58,9 @@ class Store implements IComponent {
           ${await this.productsList.render()}
         </div>
         </div>
+        <div class="overlay">
+          <p class="error__text">Sorry, no matches found</p>
+        </div>
         </main>
         <footer class="footer">
           <div class="github-links">
@@ -91,6 +94,22 @@ class Store implements IComponent {
       productItems.forEach((item) => {
         item.classList.add('item_row');
       });
+    });
+
+    const errorOverlay = document.querySelector('.overlay');
+    const errorText = document.querySelector('.error__text');
+    if (this.products.length === 0) {
+      (<HTMLElement>errorOverlay).style.display = 'block';
+      (<HTMLElement>errorText).style.display = 'block';
+      (<HTMLElement>errorText).textContent = 'Sorry, no matches found';
+    } else {
+      (<HTMLElement>errorOverlay).style.display = 'none';
+      (<HTMLElement>errorText).style.display = 'none';
+    }
+    (<HTMLElement>errorOverlay).addEventListener('click', () => {
+      (<HTMLElement>errorOverlay).style.display = 'none';
+      AppState.instance.state.filteredToyList = AppState.instance.state.products;
+      AppState.instance.state.app?.toStore();
     });
   }
 
