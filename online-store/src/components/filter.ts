@@ -2,7 +2,6 @@ import { Categories, LegoItem, Names, Sizes, ValueItems } from './types';
 import '../styles/filter.css';
 import { IComponent } from './interfaces';
 import { AppState } from '../Store/AppState';
-import { defaultSettings } from './constants';
 import { LegoCategory, LegoName, LegoSize } from './enums';
 
 export class Filter implements IComponent {
@@ -12,11 +11,18 @@ export class Filter implements IComponent {
     const categoryItems = document.querySelectorAll('.categoryItem');
     categoryItems.forEach((categoryItem, index) => {
       const currentKey: string = Object.values(LegoCategory)[index];
-      if (defaultSettings.chosenCategories[currentKey as keyof Categories]) categoryItem.classList.add('active');
-      categoryItem.addEventListener('click', () => {
-        const currentValue: boolean = defaultSettings.chosenCategories[currentKey as keyof Categories];
-        defaultSettings.chosenCategories[currentKey as keyof Categories] = !currentValue;
+      if (AppState.instance.state.chosenCategories[currentKey as keyof Categories])
+        categoryItem.classList.add('active');
+      (<HTMLInputElement>categoryItem).checked =
+        AppState.instance.state.chosenCategories[currentKey as keyof Categories];
+      (<HTMLInputElement>categoryItem).focus();
+      categoryItem.addEventListener('input', () => {
+        const currentValue: boolean = AppState.instance.state.chosenCategories[currentKey as keyof Categories];
+        AppState.instance.state.chosenCategories[currentKey as keyof Categories] = !currentValue;
         categoryItem.classList.toggle('active');
+        AppState.instance.state.chosenCategories[currentKey as keyof Categories] = (<HTMLInputElement>(
+          categoryItem
+        )).checked;
         this.filterToys();
       });
     });
@@ -24,11 +30,14 @@ export class Filter implements IComponent {
     const sizeItems = document.querySelectorAll('.sizeItem');
     sizeItems.forEach((sizeItem, index) => {
       const currentKey: string = Object.values(LegoSize)[index];
-      if (defaultSettings.chosenSizes[currentKey as keyof Sizes]) sizeItem.classList.add('active');
-      sizeItem.addEventListener('click', () => {
-        const currentValue: boolean = defaultSettings.chosenSizes[currentKey as keyof Sizes];
-        defaultSettings.chosenSizes[currentKey as keyof Sizes] = !currentValue;
+      if (AppState.instance.state.chosenSizes[currentKey as keyof Sizes]) sizeItem.classList.add('active');
+      (<HTMLInputElement>sizeItem).checked = AppState.instance.state.chosenSizes[currentKey as keyof Sizes];
+      (<HTMLInputElement>sizeItem).focus();
+      sizeItem.addEventListener('input', () => {
+        const currentValue: boolean = AppState.instance.state.chosenSizes[currentKey as keyof Sizes];
+        AppState.instance.state.chosenSizes[currentKey as keyof Sizes] = !currentValue;
         sizeItem.classList.toggle('active');
+        AppState.instance.state.chosenSizes[currentKey as keyof Sizes] = (<HTMLInputElement>sizeItem).checked;
         this.filterToys();
       });
     });
@@ -36,44 +45,49 @@ export class Filter implements IComponent {
     const nameItems = document.querySelectorAll('.nameItem');
     nameItems.forEach((nameItem, index) => {
       const currentKey: string = Object.values(LegoName)[index];
-      if (defaultSettings.chosenNames[currentKey as keyof Names]) nameItem.classList.add('active');
-      nameItem.addEventListener('click', () => {
-        const currentValue: boolean = defaultSettings.chosenNames[currentKey as keyof Names];
-        defaultSettings.chosenNames[currentKey as keyof Names] = !currentValue;
+      if (AppState.instance.state.chosenNames[currentKey as keyof Names]) nameItem.classList.add('active');
+      (<HTMLInputElement>nameItem).checked = AppState.instance.state.chosenNames[currentKey as keyof Names];
+      (<HTMLInputElement>nameItem).focus();
+      nameItem.addEventListener('input', () => {
+        const currentValue: boolean = AppState.instance.state.chosenNames[currentKey as keyof Names];
+        AppState.instance.state.chosenNames[currentKey as keyof Names] = !currentValue;
         nameItem.classList.toggle('active');
+        AppState.instance.state.chosenNames[currentKey as keyof Names] = (<HTMLInputElement>nameItem).checked;
         this.filterToys();
       });
     });
 
     const priceRegulator = document.querySelector('.price_regulator');
-    (<HTMLInputElement>priceRegulator).value = defaultSettings.priceRange[1].toString();
+    (<HTMLInputElement>priceRegulator).value = AppState.instance.state.priceRange[1].toString();
     (<HTMLInputElement>priceRegulator).addEventListener('input', () => {
-      defaultSettings.priceRange[1] = +(<HTMLInputElement>priceRegulator).value;
+      AppState.instance.state.priceRange[1] = +(<HTMLInputElement>priceRegulator).value;
       this.filterToys();
     });
 
     const amountRegulator = document.querySelector('.amount_regulator');
-    (<HTMLInputElement>amountRegulator).value = defaultSettings.amountRange[1].toString();
+    (<HTMLInputElement>amountRegulator).value = AppState.instance.state.amountRange[1].toString();
     (<HTMLInputElement>amountRegulator).addEventListener('input', () => {
-      defaultSettings.amountRange[1] = +(<HTMLInputElement>amountRegulator).value;
+      AppState.instance.state.amountRange[1] = +(<HTMLInputElement>amountRegulator).value;
       this.filterToys();
     });
   }
 
   render() {
-    const categoryItems = new Array(Object.keys(defaultSettings.chosenCategories).length).fill(null).map((_, index) => {
-      const currentKey: string = Object.values(LegoCategory)[index];
-      const categoryItem = `
+    const categoryItems = new Array(Object.keys(AppState.instance.state.chosenCategories).length)
+      .fill(null)
+      .map((_, index) => {
+        const currentKey: string = Object.values(LegoCategory)[index];
+        const categoryItem = `
       <div>
           <input type="checkbox" name="category" id="${currentKey}" class="categoryItem category_${currentKey}">
           <label for="${currentKey}">${currentKey}</label>
         </div>
     `;
-      return categoryItem;
-    });
+        return categoryItem;
+      });
     const categoryItemsString = categoryItems.join('');
 
-    const sizeItems = new Array(Object.keys(defaultSettings.chosenSizes).length).fill(null).map((_, index) => {
+    const sizeItems = new Array(Object.keys(AppState.instance.state.chosenSizes).length).fill(null).map((_, index) => {
       const currentKey: string = Object.values(LegoSize)[index];
       const sizeItem = `
       <div>
@@ -85,7 +99,7 @@ export class Filter implements IComponent {
     });
     const sizeItemsString = sizeItems.join('');
 
-    const nameItems = new Array(Object.keys(defaultSettings.chosenNames).length).fill(null).map((_, index) => {
+    const nameItems = new Array(Object.keys(AppState.instance.state.chosenNames).length).fill(null).map((_, index) => {
       const currentKey: string = Object.values(LegoName)[index];
       const nameItem = `
       <div>
@@ -122,8 +136,8 @@ export class Filter implements IComponent {
     let filteredToysList: Array<LegoItem> = [...AppState.instance.state.products];
 
     filteredToysList = filteredToysList.filter((toyItem) => {
-      if (checkPropList(defaultSettings.chosenCategories)) {
-        const filteredPairs: Array<[string, boolean]> = Object.entries(defaultSettings.chosenCategories).filter(
+      if (checkPropList(AppState.instance.state.chosenCategories)) {
+        const filteredPairs: Array<[string, boolean]> = Object.entries(AppState.instance.state.chosenCategories).filter(
           (pair) => pair[1]
         );
         return !!filteredPairs.find((pair) => pair[0] === toyItem.category);
@@ -132,8 +146,8 @@ export class Filter implements IComponent {
     });
 
     filteredToysList = filteredToysList.filter((toyItem) => {
-      if (checkPropList(defaultSettings.chosenSizes)) {
-        const filteredPairs: Array<[string, boolean]> = Object.entries(defaultSettings.chosenSizes).filter(
+      if (checkPropList(AppState.instance.state.chosenSizes)) {
+        const filteredPairs: Array<[string, boolean]> = Object.entries(AppState.instance.state.chosenSizes).filter(
           (pair) => pair[1]
         );
         return !!filteredPairs.find((pair) => pair[0] === toyItem.sizeOfDetails);
@@ -142,8 +156,8 @@ export class Filter implements IComponent {
     });
 
     filteredToysList = filteredToysList.filter((toyItem) => {
-      if (checkPropList(defaultSettings.chosenNames)) {
-        const filteredPairs: Array<[string, boolean]> = Object.entries(defaultSettings.chosenNames).filter(
+      if (checkPropList(AppState.instance.state.chosenNames)) {
+        const filteredPairs: Array<[string, boolean]> = Object.entries(AppState.instance.state.chosenNames).filter(
           (pair) => pair[1]
         );
         return !!filteredPairs.find((pair) => pair[0] === toyItem.name);
@@ -153,19 +167,22 @@ export class Filter implements IComponent {
 
     filteredToysList = filteredToysList.filter((toyItem) => {
       const priceGroup: Array<number> = [
-        defaultSettings.priceRange[0],
+        AppState.instance.state.priceRange[0],
         Number(toyItem.price),
-        defaultSettings.priceRange[1],
+        AppState.instance.state.priceRange[1],
       ];
       const countGroup: Array<number> = [
-        defaultSettings.amountRange[0],
+        AppState.instance.state.amountRange[0],
         Number(toyItem.amountOnStock),
-        defaultSettings.amountRange[1],
+        AppState.instance.state.amountRange[1],
       ];
       return [priceGroup, countGroup].every((group: Array<number>) =>
         group.every((value: number, i: number) => (i < group.length - 1 ? value <= group[i + 1] : true))
       );
     });
+
+    AppState.instance.state.filteredToyList = filteredToysList;
+    AppState.instance.state.app?.toStore();
 
     console.log(filteredToysList);
   }
