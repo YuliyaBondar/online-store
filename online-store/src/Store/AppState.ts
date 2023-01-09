@@ -1,4 +1,5 @@
 import { Basket } from '../components/Basket';
+import { Filter } from '../components/filter';
 import { Search } from '../components/search';
 
 import { IState } from './IState';
@@ -8,9 +9,12 @@ const DEFAULT_STATE: IState = {
   store: null,
   basket: new Basket(),
   search: new Search(),
+  filter: new Filter(),
   products: [],
   promos: [],
   inputPromo: '',
+  filteredToyList: [],
+  searchInput: '',
 };
 
 export class AppState {

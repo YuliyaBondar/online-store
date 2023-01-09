@@ -11,13 +11,15 @@ export class Search implements IComponent {
 
   addEvents() {
     const searchElement = <HTMLInputElement>document.querySelector('.search');
-    searchElement.addEventListener('click', () => this.searchToy());
+    searchElement.value = AppState.instance.state.searchInput;
+    searchElement.focus();
+    searchElement.addEventListener('input', () => this.searchToy());
   }
 
   render() {
     return `
       <div class="search__container">
-        <input class="search" type="search" autocomplete="off" placeholder="Поиск" autofocus="undefined">
+        <input class="search" type="search" autocomplete="off" placeholder="Search" autofocus="undefined">
         <button class="cross"></button>
       </div>
     `;
@@ -31,6 +33,9 @@ export class Search implements IComponent {
       const toyName: string = toyItem.name.toUpperCase();
       return toyName.includes(substring);
     });
-    console.log(filteredToysList)
+    AppState.instance.state.searchInput = searchElement.value;
+    console.log(filteredToysList);
+    AppState.instance.state.filteredToyList = filteredToysList;
+    AppState.instance.state.app?.toStore();
   }
 }

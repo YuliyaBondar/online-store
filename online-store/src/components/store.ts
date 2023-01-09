@@ -6,15 +6,19 @@ import { IComponent } from './interfaces';
 import { Search } from './search';
 
 import '../styles/store.css';
+import { Filter } from './filter';
 
 class Store implements IComponent {
+  [x: string]: any;
   productsList: ProductsList;
   basket: Basket;
   search: Search;
+  filter: Filter;
   constructor() {
     this.productsList = new ProductsList();
     this.basket = AppState.instance.state.basket;
     this.search = AppState.instance.state.search;
+    this.filter = AppState.instance.state.filter;
   }
 
   async render() {
@@ -35,7 +39,7 @@ class Store implements IComponent {
         <main class="main">
         <div class = "userParams">
         <div class ="filters">
-        Фильтры TODO
+        ${await this.filter.render()}
         </div>
         </div>
         <div class="bigView">
@@ -66,6 +70,7 @@ class Store implements IComponent {
     this.basket.addEvents();
     this.productsList.addEvents();
     this.search.addEvents();
+    this.filter.addEvents();
   }
 
   async renderHeader() {

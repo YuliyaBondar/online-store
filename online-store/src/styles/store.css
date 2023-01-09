@@ -100,9 +100,3 @@
   display: flex;
   flex-direction: column;
 }
-
-.filters {
-  width: 200px;
-  min-height: 400px;
-  background-color: blueviolet;
-}
