@@ -6,6 +6,7 @@ import Store from '../components/store';
 import { Categories, LegoItem, Names, Order, Promo, Sizes } from '../components/types';
 import { Search } from '../components/search';
 import { Filter } from '../components/filter';
+import { Sort } from '../components/sort';
 
 export interface IState {
   app: App | null;
@@ -13,6 +14,7 @@ export interface IState {
   basket: Basket;
   search: Search;
   filter: Filter;
+  sort: Sort;
   products: LegoItem[];
   promos: Promo[];
   inputPromo: string;
@@ -23,6 +25,7 @@ export interface IState {
   chosenNames: Names;
   priceRange: Array<number>;
   amountRange: Array<number>;
+  sortKey: string,
 }
 
 export interface IBasket {

@@ -1,6 +1,7 @@
 import { Basket } from '../components/Basket';
 import { Filter } from '../components/filter';
 import { Search } from '../components/search';
+import { Sort } from '../components/sort';
 
 import { IState } from './IState';
 
@@ -10,6 +11,7 @@ const DEFAULT_STATE: IState = {
   basket: new Basket(),
   search: new Search(),
   filter: new Filter(),
+  sort: new Sort(),
   products: [],
   promos: [],
   inputPromo: '',
@@ -80,6 +82,7 @@ const DEFAULT_STATE: IState = {
   },
   priceRange: [7.99, 1458.99],
   amountRange: [1, 8],
+  sortKey: '',
 };
 
 export class AppState {

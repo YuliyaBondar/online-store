@@ -15,7 +15,6 @@ export class Filter implements IComponent {
         categoryItem.classList.add('active');
       (<HTMLInputElement>categoryItem).checked =
         AppState.instance.state.chosenCategories[currentKey as keyof Categories];
-      (<HTMLInputElement>categoryItem).focus();
       categoryItem.addEventListener('input', () => {
         const currentValue: boolean = AppState.instance.state.chosenCategories[currentKey as keyof Categories];
         AppState.instance.state.chosenCategories[currentKey as keyof Categories] = !currentValue;
@@ -32,7 +31,6 @@ export class Filter implements IComponent {
       const currentKey: string = Object.values(LegoSize)[index];
       if (AppState.instance.state.chosenSizes[currentKey as keyof Sizes]) sizeItem.classList.add('active');
       (<HTMLInputElement>sizeItem).checked = AppState.instance.state.chosenSizes[currentKey as keyof Sizes];
-      (<HTMLInputElement>sizeItem).focus();
       sizeItem.addEventListener('input', () => {
         const currentValue: boolean = AppState.instance.state.chosenSizes[currentKey as keyof Sizes];
         AppState.instance.state.chosenSizes[currentKey as keyof Sizes] = !currentValue;
@@ -47,7 +45,6 @@ export class Filter implements IComponent {
       const currentKey: string = Object.values(LegoName)[index];
       if (AppState.instance.state.chosenNames[currentKey as keyof Names]) nameItem.classList.add('active');
       (<HTMLInputElement>nameItem).checked = AppState.instance.state.chosenNames[currentKey as keyof Names];
-      (<HTMLInputElement>nameItem).focus();
       nameItem.addEventListener('input', () => {
         const currentValue: boolean = AppState.instance.state.chosenNames[currentKey as keyof Names];
         AppState.instance.state.chosenNames[currentKey as keyof Names] = !currentValue;
@@ -78,11 +75,11 @@ export class Filter implements IComponent {
       .map((_, index) => {
         const currentKey: string = Object.values(LegoCategory)[index];
         const categoryItem = `
-      <div>
-          <input type="checkbox" name="category" id="${currentKey}" class="categoryItem category_${currentKey}">
-          <label for="${currentKey}">${currentKey}</label>
-        </div>
-    `;
+          <div>
+              <input type="checkbox" name="category" id="${currentKey}" class="categoryItem category_${currentKey}">
+              <label for="${currentKey}">${currentKey}</label>
+            </div>
+        `;
         return categoryItem;
       });
     const categoryItemsString = categoryItems.join('');
@@ -90,11 +87,11 @@ export class Filter implements IComponent {
     const sizeItems = new Array(Object.keys(AppState.instance.state.chosenSizes).length).fill(null).map((_, index) => {
       const currentKey: string = Object.values(LegoSize)[index];
       const sizeItem = `
-      <div>
-          <input type="checkbox" name="size" id="${currentKey}" class="sizeItem size_${currentKey}">
-          <label for="${currentKey}">${currentKey}</label>
-        </div>
-    `;
+        <div>
+            <input type="checkbox" name="size" id="${currentKey}" class="sizeItem size_${currentKey}">
+            <label for="${currentKey}">${currentKey}</label>
+          </div>
+      `;
       return sizeItem;
     });
     const sizeItemsString = sizeItems.join('');
@@ -102,11 +99,11 @@ export class Filter implements IComponent {
     const nameItems = new Array(Object.keys(AppState.instance.state.chosenNames).length).fill(null).map((_, index) => {
       const currentKey: string = Object.values(LegoName)[index];
       const nameItem = `
-      <div>
-          <input type="checkbox" name="name" id="${currentKey}" class="nameItem name_${currentKey}">
-          <label for="${currentKey}">${currentKey}</label>
-        </div>
-    `;
+        <div>
+            <input type="checkbox" name="name" id="${currentKey}" class="nameItem name_${currentKey}">
+            <label for="${currentKey}">${currentKey}</label>
+          </div>
+      `;
       return nameItem;
     });
     const nameItemsString = nameItems.join('');

@@ -77,3 +77,10 @@ export enum LegoName {
   WildAnimalsOfTheOcean = 'Wild Animals of the Ocean',
   TruckTrackedExcavator = 'Truck & Tracked Excavator',
 }
+
+export enum sortOptionsEnum {
+  nameUp = 'Sort by name from A to Z',
+  nameDown = 'Sort by name from Z to A',
+  priceUp = 'Sort by price ASC',
+  priceDown = 'Sort by price DESC'
+}

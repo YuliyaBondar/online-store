@@ -21,6 +21,7 @@ class Store implements IComponent {
     this.basket = AppState.instance.state.basket;
     this.search = AppState.instance.state.search;
     this.filter = AppState.instance.state.filter;
+    this.sort = AppState.instance.state.sort;
     this.products = AppState.instance.state.filteredToyList;
   }
 
@@ -44,6 +45,7 @@ class Store implements IComponent {
         </div>
         <div class="bigView">
         <div class=navSearchPanel>
+          <div class = "sortComponent">${await this.sort.render()}</div>
           <div>Found: ${this.products.length}</div>
           <div class = "searchComponent">${await this.search.render()}</div>          
         </div>
@@ -70,6 +72,7 @@ class Store implements IComponent {
     this.productsList.addEvents();
     this.search.addEvents();
     this.filter.addEvents();
+    this.sort.addEvents();
   }
 
   async renderHeader() {

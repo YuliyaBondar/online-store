@@ -4,10 +4,7 @@ import { IComponent } from './interfaces';
 import { AppState } from '../Store/AppState';
 
 export class Search implements IComponent {
-  // products: LegoItem[] = [];
-  constructor() {
-    // this.products = AppState.instance.state.products;
-  }
+  constructor() {}
 
   addEvents() {
     const searchElement = <HTMLInputElement>document.querySelector('.search');
