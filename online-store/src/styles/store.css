@@ -25,7 +25,6 @@
 
 .main {
   display: flex;
-  justify-content: center;
 
   row-gap: 113px;
   transition: all 1s ease-in-out;
@@ -47,7 +46,7 @@
 
 .products {
   padding: 10px 0;
-  height: calc(100vh - 234px);
+  height: calc(100vh - 200px);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -56,18 +55,18 @@
   overflow-x: hidden;
 }
 
-.products::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: #f5f5f5;
   border-radius: 10px;
 }
 
-.products::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 10px;
   background-color: #f5f5f5;
 }
 
-.products::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #fff;
   background-image: -webkit-gradient(linear, 40% 0%, 75% 84%, from(#17a8b9), to(#5cd4e1), color-stop(0.6, #b6e4ea));
@@ -76,6 +75,7 @@
 .bigView {
   display: flex;
   flex-direction: column;
+  width: calc(100vw - 200px);
 }
 
 .navSearchPanel {
@@ -84,7 +84,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  height: 40px;
+  height: 60px;
   background-color: steelblue;
 }
 
@@ -92,11 +92,36 @@
   background-color: blueviolet;
 }
 
-.sortBy {
-  padding: 20px;
-  background-color: brown;
-}
 .userParams {
   display: flex;
   flex-direction: column;
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+}
+
+.error__text {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 80px;
+  padding: 18px;
+  font-size: 24px;
+  line-height: 22px;
+  background: radial-gradient( 109.56% 109.56% at 0% -2.94%, rgba(255, 255, 255, 0.5) 0%, rgba(179, 246, 255, 0.5) 100% );
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  transition: 0.3s;
 }

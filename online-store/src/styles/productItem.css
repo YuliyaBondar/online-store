@@ -13,6 +13,31 @@
   cursor: pointer;
   transition: 0.3s;
 }
+
+.item_row {
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  height: max-content;
+  column-gap: 30px;
+}
+
+.view_img {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.item_row .item__btn {
+  width: 100px;
+  margin: 0;
+}
+
+.item_row h4,
+.item_row p,
+.item_row button {
+  width: 16%;
+}
+
 .item__name {
   font-size: 18px;
   line-height: 20px;

@@ -6,7 +6,9 @@ import { IComponent } from './interfaces';
 import { Search } from './search';
 
 import '../styles/store.css';
+import '../styles/productItem.css';
 import { Filter } from './filter';
+import { LegoItem } from './types';
 
 class Store implements IComponent {
   [x: string]: any;
@@ -14,17 +16,17 @@ class Store implements IComponent {
   basket: Basket;
   search: Search;
   filter: Filter;
+  private products: LegoItem[] = [];
   constructor() {
     this.productsList = new ProductsList();
     this.basket = AppState.instance.state.basket;
     this.search = AppState.instance.state.search;
     this.filter = AppState.instance.state.filter;
+    this.sort = AppState.instance.state.sort;
+    this.products = AppState.instance.state.filteredToyList;
   }
 
   async render() {
-    //TODO: реализовать компонент навигации!
-    //TODO: реализовать компоненты фильтров! (по требованиям - две штуки!)
-    //TODO: реализовать компоненту сортировки выведенных товаров
     document.body.innerHTML = `
         <header class="header">
         <a href="#/">
@@ -44,13 +46,20 @@ class Store implements IComponent {
         </div>
         <div class="bigView">
         <div class=navSearchPanel>
-        <div class = "mainNav">Реализовать компонент навигации</div>
-        <div class = "searchComponent">${await this.search.render()}</div>
+          <div class = "sortComponent">${await this.sort.render()}</div>
+          <div>Found: ${this.products.length}</div>
+          <div class = "searchComponent">${await this.search.render()}</div>
+          <div class="viewComponent">
+            <img src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/plitka.png" alt="plitka" class="view_img plitka">
+            <img src="https://raw.githubusercontent.com/YuliyaBondar/image-data/master/list.png" alt="list" class="view_img list">
+          </div>
         </div>
-        <div class ="sortBy">Sort by: TODO</div>
         <div class ="products">
-        ${await this.productsList.render()}
+          ${await this.productsList.render()}
         </div>
+        </div>
+        <div class="overlay">
+          <p class="error__text">Sorry, no matches found</p>
         </div>
         </main>
         <footer class="footer">
@@ -71,6 +80,37 @@ class Store implements IComponent {
     this.productsList.addEvents();
     this.search.addEvents();
     this.filter.addEvents();
+    this.sort.addEvents();
+    
+    const viewPlitka = document.querySelector('.plitka');
+    const viewList = document.querySelector('.list');
+    const productItems = document.querySelectorAll('.item');
+    (<HTMLImageElement>viewPlitka).addEventListener('click', () => {
+      productItems.forEach((item) => {
+        item.classList.remove('item_row');
+      });
+    });
+    (<HTMLImageElement>viewList).addEventListener('click', () => {
+      productItems.forEach((item) => {
+        item.classList.add('item_row');
+      });
+    });
+
+    const errorOverlay = document.querySelector('.overlay');
+    const errorText = document.querySelector('.error__text');
+    if (this.products.length === 0) {
+      (<HTMLElement>errorOverlay).style.display = 'block';
+      (<HTMLElement>errorText).style.display = 'block';
+      (<HTMLElement>errorText).textContent = 'Sorry, no matches found';
+    } else {
+      (<HTMLElement>errorOverlay).style.display = 'none';
+      (<HTMLElement>errorText).style.display = 'none';
+    }
+    (<HTMLElement>errorOverlay).addEventListener('click', () => {
+      (<HTMLElement>errorOverlay).style.display = 'none';
+      AppState.instance.state.filteredToyList = AppState.instance.state.products;
+      AppState.instance.state.app?.toStore();
+    });
   }
 
   async renderHeader() {
