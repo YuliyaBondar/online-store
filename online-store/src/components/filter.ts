@@ -143,13 +143,13 @@ export class Filter implements IComponent {
       <h3>Price</h3>
       <input type="range" value="1" min="7.99" max="1458.99" step="1" class="price_regulator">
       <div class="price__count">
-        <span class="price__number price_min">7.99$</span>
-        <span class="price__number price_max">${AppState.instance.state.priceRange[1]}</span>
+        <span class="price__number price_min">${AppState.instance.state.priceRange[0]}$</span>
+        <span class="price__number price_max">${AppState.instance.state.priceRange[1]}$</span>
       </div>
       <h3>Amount</h3>
       <input type="range" value="1" min="1" max="8" step="1" class="amount_regulator">
       <div class="instance__count">
-        <span class="instance__number instance_min">1</span>
+        <span class="instance__number instance_min">${AppState.instance.state.amountRange[0]}</span>
         <span class="instance__number instance_max">${AppState.instance.state.amountRange[1]}</span>
       </div>
     `;
