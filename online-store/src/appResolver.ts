@@ -35,6 +35,7 @@ export const locationResolver = async (location: string, option = '') => {
           .slice(1)
           .split('&')
           .map((item) => item.split('='));
+        parametres = parametres.filter((item) => item[1].length > 0);
         if (parametres.length > 0) {
           let filterhash = `#/?`;
           parametres.map((item) => {
@@ -71,6 +72,10 @@ export const locationResolver = async (location: string, option = '') => {
 
           AppState.instance.state.app?.toStore();
           window.location.hash = filterhash;
+        } else {
+          AppState.instance.state.filteredToyList = AppState.instance.state.products;
+          AppState.instance.state.app?.toStore();
+          window.location.hash = '#/';
         }
 
         console.log(parametres);
