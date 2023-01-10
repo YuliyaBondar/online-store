@@ -38,8 +38,8 @@ export const locationResolver = async (location: string, option = '') => {
         parametres = parametres.filter((item) => item[1].length > 0);
         if (parametres.length > 0) {
           let filterhash: string[] = [];
+          let filteredToysList: Array<LegoItem> = [...AppState.instance.state.products];
           parametres.map((item) => {
-            let filteredToysList: Array<LegoItem> = [...AppState.instance.state.products];
             if (item[0] === 'search') {
               filteredToysList = filteredToysList.filter((toyItem) => {
                 const substring: string = item[1].toLowerCase();
@@ -70,7 +70,7 @@ export const locationResolver = async (location: string, option = '') => {
 
             if (item[0] === 'sort') {
               filterhash.push(`${item[0]}=${item[1]}`);
-              AppState.instance.state.sortKey = item[1];
+              // AppState.instance.state.sortKey = item[1];
               filteredToysList.sort((a, b) => {
                 switch (item[1]) {
                   case 'nameUp':
