@@ -12,6 +12,14 @@ export class Sort implements IComponent {
     (<HTMLElement>sortSelect).addEventListener('change', (e: Event) => {
       AppState.instance.state.sortKey = (<HTMLSelectElement>e.target).value;
       this.sortToy();
+      const options = document.querySelectorAll('.sort__option');
+      options.forEach((item) => {
+        (<HTMLElement>item).removeAttribute('selected');
+        if (item.getAttribute('value') === AppState.instance.state.sortKey)
+          (<HTMLElement>item).setAttribute('selected', 'selected');
+        console.log(item.getAttribute('value'), AppState.instance.state.sortKey, item);
+      });
+      (<HTMLElement>sortSelect).setAttribute('value', `${AppState.instance.state.sortKey}`);
     });
   }
 
@@ -25,12 +33,6 @@ export class Sort implements IComponent {
       return sortItem;
     });
     const sortItemsString = sortItems.join('');
-
-    // const options = document.querySelectorAll('.sort__option');
-    // options.forEach((item, index) => {
-    //   if (item.textContent === AppState.instance.state.sortKey)
-    //     (<HTMLElement>item).setAttribute('selected', 'selected');
-    // });
 
     return `
       <div class="sort__container">

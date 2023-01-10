@@ -56,14 +56,14 @@ export class Filter implements IComponent {
 
     const priceRegulator = document.querySelector('.price_regulator');
     (<HTMLInputElement>priceRegulator).value = AppState.instance.state.priceRange[1].toString();
-    (<HTMLInputElement>priceRegulator).addEventListener('input', () => {
+    (<HTMLInputElement>priceRegulator).addEventListener('change', () => {
       AppState.instance.state.priceRange[1] = +(<HTMLInputElement>priceRegulator).value;
       this.filterToys();
     });
 
     const amountRegulator = document.querySelector('.amount_regulator');
     (<HTMLInputElement>amountRegulator).value = AppState.instance.state.amountRange[1].toString();
-    (<HTMLInputElement>amountRegulator).addEventListener('input', () => {
+    (<HTMLInputElement>amountRegulator).addEventListener('change', () => {
       AppState.instance.state.amountRange[1] = +(<HTMLInputElement>amountRegulator).value;
       this.filterToys();
     });

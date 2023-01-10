@@ -57,3 +57,32 @@ h3 {
   cursor: pointer;
   transition: 0.3s;
 }
+
+.price_range_container {
+  position: relative;
+  pointer-events: none;
+  width: 100%;
+}
+
+.price_range_container input[type="range"]{
+  height: 2em;
+  display: block;
+  margin: 0;
+  width: 100%;
+}
+
+.price_range_container input[type="range"]:last-child{
+  margin-top: -2em;
+}
+
+.price_range_container input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
+}
+
+.price_range_container input[type="range"]::-moz-range-thumb {
+  pointer-events: all;
+}
+
+.price_range_container input[type="range"]::-ms-thumb {
+  pointer-events: all;
+}
