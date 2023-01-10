@@ -30,7 +30,8 @@ h3 {
   flex-direction: column;
   row-gap: 10px;
 
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 16px;
 
   border: 1px solid #FFFFFF;
 
