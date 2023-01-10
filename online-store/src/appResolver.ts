@@ -37,7 +37,7 @@ export const locationResolver = async (location: string, option = '') => {
           .map((item) => item.split('='));
         parametres = parametres.filter((item) => item[1].length > 0);
         if (parametres.length > 0) {
-          let filterhash = `#/?`;
+          let filterhash: string[] = [];
           parametres.map((item) => {
             let filteredToysList: Array<LegoItem> = [...AppState.instance.state.products];
             if (item[0] === 'search') {
@@ -65,15 +65,35 @@ export const locationResolver = async (location: string, option = '') => {
                 );
               });
 
-              AppState.instance.state.filteredToyList = filteredToysList;
-              filterhash += `${item[0]}=${item[1]}`;
+              filterhash.push(`${item[0]}=${item[1]}`);
             }
+
+            if (item[0] === 'sort') {
+              filterhash.push(`${item[0]}=${item[1]}`);
+              AppState.instance.state.sortKey = item[1];
+              filteredToysList.sort((a, b) => {
+                switch (item[1]) {
+                  case 'nameUp':
+                    return a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase() ? -1 : 1;
+                  case 'nameDown':
+                    return a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase() ? -1 : 1;
+                  case 'priceUp':
+                    return +a.price - +b.price;
+                  case 'priceDown':
+                    return +b.price - +a.price;
+                  default:
+                    return 0;
+                }
+              });
+            }
+            AppState.instance.state.filteredToyList = filteredToysList;
           });
 
           AppState.instance.state.app?.toStore();
-          window.location.hash = filterhash;
+          window.location.hash = `#/?${filterhash.join('&')}`;
         } else {
           AppState.instance.state.filteredToyList = AppState.instance.state.products;
+
           AppState.instance.state.app?.toStore();
           window.location.hash = '#/';
         }
