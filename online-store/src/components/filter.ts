@@ -81,6 +81,7 @@ export class Filter implements IComponent {
       })
       AppState.instance.state.priceRange = [7.99, 1458.99];
       AppState.instance.state.amountRange = [1, 8];
+      AppState.instance.state.searchInput = '';
 
       AppState.instance.state.filteredToyList = AppState.instance.state.products;
       AppState.instance.state.app?.toStore();
