@@ -12,13 +12,17 @@ export class Search implements IComponent {
     searchElement.value = AppState.instance.state.searchInput;
     searchElement.focus();
     searchElement.addEventListener('input', () => {
-      this.searchToy();
-      locationResolver(`#/search/${AppState.instance.state.searchInput}`);
+      const searchElement = <HTMLInputElement>document.querySelector('.search');
+      AppState.instance.state.searchInput = searchElement.value;
+      //this.searchToy();
+      locationResolver(`#/?search=${AppState.instance.state.searchInput}`);
     });
     const clearSearch = <HTMLElement>document.querySelector('.cross');
     clearSearch.addEventListener('click', () => {
       (<HTMLInputElement>searchElement).value = '';
-      this.searchToy();
+      AppState.instance.state.searchInput = searchElement.value;
+      //this.searchToy();
+      locationResolver(`#/`);
     });
   }
 
@@ -31,9 +35,10 @@ export class Search implements IComponent {
     `;
   }
 
-  searchToy() {
+  /*searchToy() {
     let filteredToysList: Array<LegoItem> = [...AppState.instance.state.products];
     const searchElement = <HTMLInputElement>document.querySelector('.search');
+    AppState.instance.state.searchInput = searchElement.value;
     filteredToysList = filteredToysList.filter((toyItem) => {
       const substring: string = (<HTMLInputElement>searchElement).value.toLowerCase();
       const toyName: string = toyItem.name.toLowerCase();
@@ -61,5 +66,5 @@ export class Search implements IComponent {
     console.log(filteredToysList);
     AppState.instance.state.filteredToyList = filteredToysList;
     AppState.instance.state.app?.toStore();
-  }
+  }*/
 }

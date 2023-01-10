@@ -30,6 +30,50 @@ export const locationResolver = async (location: string, option = '') => {
           window.location.hash = '#/basket';
           await AppState.instance.state.app?.toBasket();
         }
+      } else if (units[0] === '#' && units[1].startsWith('?')) {
+        let parametres = units[1]
+          .slice(1)
+          .split('&')
+          .map((item) => item.split('='));
+        if (parametres.length > 0) {
+          let filterhash = `#/?`;
+          parametres.map((item) => {
+            let filteredToysList: Array<LegoItem> = [...AppState.instance.state.products];
+            if (item[0] === 'search') {
+              filteredToysList = filteredToysList.filter((toyItem) => {
+                const substring: string = item[1].toLowerCase();
+                const toyName: string = toyItem.name.toLowerCase();
+                const toyAgeFrom: string = toyItem.ageFrom.toString();
+                const toyPrice: string = toyItem.price.toString();
+                const toyCategory: string = toyItem.category.toLowerCase();
+                const toyNumbOfDetails: string = toyItem.numbOfDetails.toString();
+                const toySizeOfDetails: string = toyItem.sizeOfDetails.toLowerCase();
+                const toyInterests: string = toyItem.interests.toString().toLowerCase();
+                const toyDescription: string = toyItem.description.toLowerCase();
+                const toyAmountOnStock: string = toyItem.amountOnStock.toString();
+                return (
+                  toyName.includes(substring) ||
+                  toyAgeFrom.includes(substring) ||
+                  toyPrice.includes(substring) ||
+                  toyCategory.includes(substring) ||
+                  toyNumbOfDetails.includes(substring) ||
+                  toySizeOfDetails.includes(substring) ||
+                  toyInterests.includes(substring) ||
+                  toyDescription.includes(substring) ||
+                  toyAmountOnStock.includes(substring)
+                );
+              });
+
+              AppState.instance.state.filteredToyList = filteredToysList;
+              filterhash += `${item[0]}=${item[1]}`;
+            }
+          });
+
+          AppState.instance.state.app?.toStore();
+          window.location.hash = filterhash;
+        }
+
+        console.log(parametres);
       } else {
         PAGE404;
       }
