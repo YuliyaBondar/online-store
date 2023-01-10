@@ -3,7 +3,7 @@ import DescriptionPage from './components/DescriptionPage';
 import Page404 from './components/Page404';
 import { LegoItem } from './components/types';
 
-export const locationResolver = async (location: string, option: string = '') => {
+export const locationResolver = async (location: string, option = '') => {
   const PAGE404 = new Page404().render();
   const units: string[] = location.split('/').filter((unit) => !!unit);
 
@@ -36,7 +36,7 @@ export const locationResolver = async (location: string, option: string = '') =>
       break;
     case 3:
       if (units[0] === '#' && units[1] === 'products') {
-        let product: LegoItem[] = appState.state.products.filter((item) => item.id === Number(units[2]));
+        const product: LegoItem[] = appState.state.products.filter((item) => item.id === Number(units[2]));
         if (product.length !== 0) {
           window.location.hash = `#/products/${units[2]}`;
           const DESCRIPTION = new DescriptionPage(product[0]);
@@ -45,6 +45,14 @@ export const locationResolver = async (location: string, option: string = '') =>
         } else {
           PAGE404;
         }
+      } else {
+        PAGE404;
+      }
+      break;
+    case 4:
+      if (units[0] === '#' && units[1] === 'search') {
+        window.location.hash = `#/search/${units[2]}`;
+        AppState.instance.state.app?.toStore();
       } else {
         PAGE404;
       }
