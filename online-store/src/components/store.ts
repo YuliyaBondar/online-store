@@ -8,7 +8,7 @@ import { Search } from './search';
 import '../styles/store.css';
 import '../styles/productItem.css';
 import { Filter } from './filter';
-import { LegoItem } from './types';
+import { Categories, LegoItem, Names, Sizes } from './types';
 
 class Store implements IComponent {
   [x: string]: any;
@@ -108,6 +108,18 @@ class Store implements IComponent {
     }
     (<HTMLElement>errorOverlay).addEventListener('click', () => {
       (<HTMLElement>errorOverlay).style.display = 'none';
+      Object.keys(AppState.instance.state.chosenCategories).forEach((key) => {
+        AppState.instance.state.chosenCategories[key as keyof Categories] = false;
+      })
+      Object.keys(AppState.instance.state.chosenSizes).forEach((key) => {
+        AppState.instance.state.chosenSizes[key as keyof Sizes] = false;
+      })
+      Object.keys(AppState.instance.state.chosenNames).forEach((key) => {
+        AppState.instance.state.chosenNames[key as keyof Names] = false;
+      })
+      AppState.instance.state.priceRange = [7.99, 1458.99];
+      AppState.instance.state.amountRange = [1, 8];
+      AppState.instance.state.searchInput = '';
       AppState.instance.state.filteredToyList = AppState.instance.state.products;
       AppState.instance.state.app?.toStore();
     });

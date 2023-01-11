@@ -56,14 +56,14 @@ export class Filter implements IComponent {
 
     const priceRegulator = document.querySelector('.price_regulator');
     (<HTMLInputElement>priceRegulator).value = AppState.instance.state.priceRange[1].toString();
-    (<HTMLInputElement>priceRegulator).addEventListener('input', () => {
+    (<HTMLInputElement>priceRegulator).addEventListener('change', () => {
       AppState.instance.state.priceRange[1] = +(<HTMLInputElement>priceRegulator).value;
       this.filterToys();
     });
 
     const amountRegulator = document.querySelector('.amount_regulator');
     (<HTMLInputElement>amountRegulator).value = AppState.instance.state.amountRange[1].toString();
-    (<HTMLInputElement>amountRegulator).addEventListener('input', () => {
+    (<HTMLInputElement>amountRegulator).addEventListener('change', () => {
       AppState.instance.state.amountRange[1] = +(<HTMLInputElement>amountRegulator).value;
       this.filterToys();
     });
@@ -81,6 +81,7 @@ export class Filter implements IComponent {
       })
       AppState.instance.state.priceRange = [7.99, 1458.99];
       AppState.instance.state.amountRange = [1, 8];
+      AppState.instance.state.searchInput = '';
 
       AppState.instance.state.filteredToyList = AppState.instance.state.products;
       AppState.instance.state.app?.toStore();
@@ -142,8 +143,16 @@ export class Filter implements IComponent {
       </div>
       <h3>Price</h3>
       <input type="range" value="1" min="7.99" max="1458.99" step="1" class="price_regulator">
+      <div class="price__count">
+        <span class="price__number price_min">${AppState.instance.state.priceRange[0]}$</span>
+        <span class="price__number price_max">${AppState.instance.state.priceRange[1]}$</span>
+      </div>
       <h3>Amount</h3>
       <input type="range" value="1" min="1" max="8" step="1" class="amount_regulator">
+      <div class="instance__count">
+        <span class="instance__number instance_min">${AppState.instance.state.amountRange[0]}</span>
+        <span class="instance__number instance_max">${AppState.instance.state.amountRange[1]}</span>
+      </div>
     `;
   }
 

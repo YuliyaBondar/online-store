@@ -25,12 +25,13 @@ h3 {
 .name_container {
   padding: 10px;
   margin-bottom: 20px;
-  height: 30vh;
+  height: 25vh;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
 
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 16px;
 
   border: 1px solid #FFFFFF;
 
@@ -39,7 +40,6 @@ h3 {
 
 .price_regulator,
 .amount_regulator {
-  margin-bottom: 20px;
   width: 100%;
 }
 
@@ -57,3 +57,16 @@ h3 {
   cursor: pointer;
   transition: 0.3s;
 }
+
+.instance__count, 
+.price__count {
+  margin-bottom: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-family: Steppe;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+
