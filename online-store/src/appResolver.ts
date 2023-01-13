@@ -118,14 +118,6 @@ export const locationResolver = async (location: string, option = '') => {
         PAGE404;
       }
       break;
-    case 4:
-      if (units[0] === '#' && units[1] === 'search') {
-        window.location.hash = `#/search/${units[2]}`;
-        AppState.instance.state.app?.toStore();
-      } else {
-        PAGE404;
-      }
-      break;
     default: {
       PAGE404;
     }

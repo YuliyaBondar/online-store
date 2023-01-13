@@ -61,8 +61,7 @@ export class Sort implements IComponent {
           return 0;
       }
     });
-
-    console.log(filteredToysList);
+    
     AppState.instance.state.filteredToyList = filteredToysList;
     AppState.instance.state.app?.toStore();
   }
