@@ -208,7 +208,5 @@ export class Filter implements IComponent {
 
     AppState.instance.state.filteredToyList = filteredToysList;
     AppState.instance.state.app?.toStore();
-
-    console.log(filteredToysList);
   }
 }
