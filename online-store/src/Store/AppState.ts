@@ -107,7 +107,8 @@ export class AppState {
 
   static summaryCosts = () => {
     const legoOrdersMoney: number[] = [];
-    this.instance.state.basket.orders.forEach((order) => {
+    const orders = this.instance.state.basket.orders;
+    orders.forEach((order) => {
       this.instance.state.products.filter((product) => {
         if (product.id === order.legoItem) legoOrdersMoney.push(product.price * order.count);
       });

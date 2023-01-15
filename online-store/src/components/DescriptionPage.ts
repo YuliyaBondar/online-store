@@ -10,9 +10,12 @@ import '../styles/descriptionPage.css';
 class DescriptionPage implements IComponent {
   product: LegoItem;
   basket: Basket;
+  isNoOrders: boolean;
   constructor(product: LegoItem) {
     this.product = product;
     this.basket = AppState.instance.state.basket;
+    this.isNoOrders =
+      AppState.instance.state.basket.orders.filter((item) => item.legoItem === this.product.id).length === 0;
   }
 
   async render() {
@@ -140,7 +143,7 @@ class DescriptionPage implements IComponent {
   buttonChanger() {
     const btnAdd = document.querySelector('.mainProduct__add');
     const btnRemove = document.querySelector('.mainProduct__remove');
-    if (AppState.instance.state.basket.orders.filter((item) => item.legoItem === this.product.id).length === 0) {
+    if (this.isNoOrders) {
       btnAdd?.classList.remove('hidden');
       btnRemove?.classList.add('hidden');
     } else {
@@ -164,7 +167,7 @@ class DescriptionPage implements IComponent {
   }
 
   buyNow() {
-    if (AppState.instance.state.basket.orders.filter((item) => item.legoItem === this.product.id).length === 0) {
+    if (this.isNoOrders) {
       AppState.instance.state.basket.orders.push({ legoItem: this.product.id, count: 1 });
       AppState.instance.saveLocalStorageOrders();
     }
