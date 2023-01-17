@@ -1,0 +1,28 @@
+.discount-list {
+  border: 2px solid gold;
+  border-radius: 15px;
+}
+
+.discount-list__header {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.discount-list__promo-div {
+  display: flex;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.discount-list__drop {
+  width: 50px;
+  height: 30px;
+  background-color: #17a8b9;
+  border: 1px solid gold;
+  border-radius: 5px;
+  cursor: pointer;
+}

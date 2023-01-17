@@ -1,0 +1,194 @@
+.basket-design__summary {
+  border: 3px solid gray;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 30px;
+  padding: 15px;
+}
+
+.summary > * {
+  margin-top: 40px;
+}
+
+.summary__items > * {
+  margin-top: 20px;
+}
+
+.summary__header {
+  font-size: 30px;
+  font-weight: bold;
+  color: gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary__buy {
+  width: 270px;
+  height: 50px;
+  font-size: 22px;
+  background-color: #17a8b9;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.summary__input-promo {
+  width: 100%;
+  height: 30px;
+}
+
+.summary__total_decorated {
+  text-decoration: line-through;
+}
+
+.summary__add-current-promo {
+  width: 30px;
+  height: 20px;
+  background-color: tomato;
+  border: 1px solid gold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.summary_current-promo {
+  font-size: 16px;
+}
+.summary__searched {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.summary__test-promo {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 20px 5px;
+  color: goldenrod;
+}
+
+.basket-design__empty {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.basket-design__popap-wrapper {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.3);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.basket-design__popap-wrapper_hidden {
+  visibility: hidden;
+}
+
+.basket-design__buy-popap {
+  background-color: #17a8b9;
+  width: 40%;
+  height: 70%;
+  border: 5px solid gold;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.buy-popap__confirm {
+  width: 100px;
+  height: 60px;
+  background-color: #4b12d0;
+  font-size: 18px;
+  border-radius: 30%;
+  cursor: pointer;
+}
+
+.credit-card__input,
+.buy-popap__input::placeholder {
+  color: gray;
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.buy-popap__header {
+  color: gold;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.credit-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid gold;
+  border-radius: 15px;
+  gap: 20px;
+  background: linear-gradient(45deg, #0826e8, #c5dde8);
+}
+
+.credit-card__img-div {
+  width: 80px;
+  height: 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.credit-card__img-div img {
+  display: block;
+  max-width: 80%;
+  height: auto;
+}
+
+.credit-card span {
+  color: gold;
+  font-size: 16px;
+}
+
+.credit-card__identity {
+  display: flex;
+  padding: 20px;
+  gap: 15px;
+  align-items: center;
+}
+
+.credit-card__additional {
+  display: flex;
+  padding: 20px;
+  gap: 15px;
+}
+
+.popap-error {
+  font-size: 20px;
+  font-style: italic;
+  color: red;
+}
+.popap-error_hidden {
+  visibility: hidden;
+}
+
+.buy-popap__card-errors {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.buy-popap__name,
+.buy-popap__phone,
+.buy-popap__delivery,
+.buy-popap__email {
+  display: flex;
+  gap: 15px;
+}
