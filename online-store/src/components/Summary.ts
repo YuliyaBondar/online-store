@@ -139,10 +139,10 @@ class Summary implements IComponent {
     const inputName = document.querySelector('.buy-popap__name-input');
     inputName?.addEventListener('input', () => {
       const cardNameError = document.querySelector('.popap-error-name');
-      const re = new RegExp('^[А-ЯA-Za-zа-я0-9-]*$');
+      const regExp = new RegExp('^[А-ЯA-Za-zа-я0-9-]*$');
       let names = (<HTMLInputElement>inputName).value.split(' ');
       names = names.map((item) => item.trim()).filter((item) => !!item);
-      if (names.length < 2 || names.filter((item) => re.test(item) && item.length >= 3).length !== names.length) {
+      if (names.length < 2 || names.filter((item) => regExp.test(item) && item.length >= 3).length !== names.length) {
         (<HTMLElement>cardNameError).classList.remove('popap-error_hidden');
         this.isValidName = false;
       } else {
@@ -154,8 +154,8 @@ class Summary implements IComponent {
     const inputNumber = document.querySelector('.buy-popap__phone-input');
     inputNumber?.addEventListener('input', () => {
       const cardPhoneError = document.querySelector('.popap-error-phone');
-      const re = new RegExp('^[+][0-9]{9,}$');
-      if (!re.test((<HTMLInputElement>inputNumber).value)) {
+      const regExp = new RegExp('^[+][0-9]{9,}$');
+      if (!regExp.test((<HTMLInputElement>inputNumber).value)) {
         (<HTMLElement>cardPhoneError).classList.remove('popap-error_hidden');
         this.isValidNumber = false;
       } else {
@@ -167,10 +167,10 @@ class Summary implements IComponent {
     const inputDelivery = document.querySelector('.buy-popap__delivery-input');
     inputDelivery?.addEventListener('input', () => {
       const cardDeliveryError = document.querySelector('.popap-error-delivery');
-      const re = new RegExp('^[A-ZА-Яa-zа-я0-9-]*$');
+      const regExp = new RegExp('^[A-ZА-Яa-zа-я0-9-]*$');
       let names = (<HTMLInputElement>inputDelivery).value.split(' ');
       names = names.map((item) => item.trim()).filter((item) => !!item);
-      if (names.length < 3 || names.filter((item) => re.test(item) && item.length >= 5).length !== names.length) {
+      if (names.length < 3 || names.filter((item) => regExp.test(item) && item.length >= 5).length !== names.length) {
         (<HTMLElement>cardDeliveryError).classList.remove('popap-error_hidden');
         this.isValidDelivery = false;
       } else {
@@ -182,8 +182,8 @@ class Summary implements IComponent {
     const inputEmail = document.querySelector('.buy-popap__email-input');
     inputEmail?.addEventListener('input', () => {
       const cardEmailError = document.querySelector('.popap-error-email');
-      const re = new RegExp('^[a-zA-Z0-9-.,]{2,}@[a-zA-Z]{2,}[.][a-zA-Z]{2,}$');
-      if (!re.test((<HTMLInputElement>inputEmail).value)) {
+      const regExp = new RegExp('^[a-zA-Z0-9-.,]{2,}@[a-zA-Z]{2,}[.][a-zA-Z]{2,}$');
+      if (!regExp.test((<HTMLInputElement>inputEmail).value)) {
         (<HTMLElement>cardEmailError).classList.remove('popap-error_hidden');
         this.isValidEmail = false;
       } else {
@@ -195,8 +195,8 @@ class Summary implements IComponent {
     const inputCVV = document.querySelector('.credit-card__cvv-input');
     inputCVV?.addEventListener('input', () => {
       const cardCVVError = document.querySelector('.popap-error-cvv');
-      const re = new RegExp('^[0-9]{3}$');
-      if (!re.test((<HTMLInputElement>inputCVV).value)) {
+      const regExp = new RegExp('^[0-9]{3}$');
+      if (!regExp.test((<HTMLInputElement>inputCVV).value)) {
         (<HTMLElement>cardCVVError).classList.remove('popap-error_hidden');
         this.isValidCVV = false;
       } else {
@@ -207,10 +207,10 @@ class Summary implements IComponent {
 
     const inputValid = document.querySelector('.credit-card__valid-input');
     inputValid?.addEventListener('input', (e: Event) => {
-      const re = new RegExp('^[0-9]{2}$');
+      const regExp = new RegExp('^[0-9]{2}$');
       const cardValidError = document.querySelector('.popap-error-valid');
       if ((<HTMLInputElement>inputValid).value.length == 2) {
-        if (re.test((<HTMLInputElement>inputValid).value)) {
+        if (regExp.test((<HTMLInputElement>inputValid).value)) {
           let separator = (<HTMLInputElement>inputValid).value;
           separator += '/';
           (<HTMLInputElement>inputValid).value = separator;
@@ -224,7 +224,7 @@ class Summary implements IComponent {
       numbers = numbers.map((item) => item.trim()).filter((item) => !!item);
       if (
         numbers.length !== 2 ||
-        numbers.filter((item) => re.test(item)).length !== numbers.length ||
+        numbers.filter((item) => regExp.test(item)).length !== numbers.length ||
         Number(numbers[0]) > 12 ||
         Number(numbers[0]) < 1
       ) {
