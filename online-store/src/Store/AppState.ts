@@ -1,7 +1,4 @@
-import { Basket } from '../components/Basket';
-import { Filter } from '../components/filter';
-import { Search } from '../components/search';
-import { Sort } from '../components/sort';
+import { Basket, Filter, Search, Sort } from '../components';
 
 import { IState } from './IState';
 

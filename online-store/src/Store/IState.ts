@@ -1,9 +1,6 @@
-import { Basket } from '../components/Basket';
-import Store from '../components/store';
 import { Categories, LegoItem, Names, Order, Promo, Sizes } from '../components/types';
-import { Search } from '../components/search';
-import { Filter } from '../components/filter';
-import { Sort } from '../components/sort';
+import Store from '../components/store';
+import { Basket, Filter, Search, Sort } from '../components';
 
 import App from '..';
 
