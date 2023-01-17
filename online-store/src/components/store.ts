@@ -4,11 +4,11 @@ import { ProductsList } from './productsList';
 import { Basket } from './Basket';
 import { IComponent } from './interfaces';
 import { Search } from './search';
+import { Filter } from './filter';
+import { Categories, LegoItem, Names, Sizes } from './types';
 
 import '../styles/store.css';
 import '../styles/productItem.css';
-import { Filter } from './filter';
-import { Categories, LegoItem, Names, Sizes } from './types';
 
 class Store implements IComponent {
   [x: string]: any;

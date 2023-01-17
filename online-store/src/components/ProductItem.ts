@@ -1,13 +1,13 @@
 import { AppState } from '../Store/AppState';
-import { locationResolver } from '../appResolver';
 
+import { locationResolver } from '../appResolver';
 import { IComponent } from './interfaces';
 import { LegoItem, Order } from './types';
 
 import '../styles/ProductItem.css';
 
 export class ProductItem implements IComponent {
-  
+
   product: LegoItem;
   constructor(product: LegoItem) {
     this.product = product;

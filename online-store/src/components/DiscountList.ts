@@ -1,7 +1,7 @@
+import { AppState } from '../Store/AppState';
+
 import { IComponent } from './interfaces';
 import { Promo } from './types';
-
-import { AppState } from '../Store/AppState';
 
 import '../styles/discountList.css';
 

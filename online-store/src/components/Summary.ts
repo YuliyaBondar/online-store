@@ -1,11 +1,11 @@
+import { AppState } from '../Store/AppState';
+
+import { locationResolver } from '../appResolver';
 import { promos, cardsUrl } from './constants';
 import { IComponent } from './interfaces';
 import DiscountList from './DiscountList';
 
-import { AppState } from '../Store/AppState';
-
 import '../styles/summary.css';
-import { locationResolver } from '../appResolver';
 
 class Summary implements IComponent {
   discountList: DiscountList;

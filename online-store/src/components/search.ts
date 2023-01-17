@@ -1,8 +1,9 @@
-import { LegoItem } from './types';
-import '../styles/search.css';
-import { IComponent } from './interfaces';
 import { AppState } from '../Store/AppState';
+
 import { locationResolver } from '../appResolver';
+import { IComponent } from './interfaces';
+
+import '../styles/search.css';
 
 export class Search implements IComponent {
   constructor() {}

@@ -1,9 +1,9 @@
+import { AppState } from '../Store/AppState';
+
 import { Basket } from './Basket';
 import Summary from './Summary';
 import { IComponent } from './interfaces';
 import ProductsCarts from './ProductsCarts';
-
-import { AppState } from '../Store/AppState';
 
 import '../styles/basketPage.css';
 

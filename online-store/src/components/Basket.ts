@@ -1,9 +1,10 @@
-import { LegoItem, Order } from './types';
-import '../styles/basket.css';
-import { IBasket } from '../Store/IState';
-import { IComponent } from './interfaces';
 import { AppState } from '../Store/AppState';
+
 import { locationResolver } from '../appResolver';
+import { Order } from './types';
+import { IComponent } from './interfaces';
+
+import '../styles/basket.css';
 
 export class Basket implements IComponent {
   orders: Order[];

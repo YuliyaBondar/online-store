@@ -1,8 +1,10 @@
-import { LegoItem } from './types';
-import '../styles/sort.css';
-import { IComponent } from './interfaces';
 import { AppState } from '../Store/AppState';
+
+import { LegoItem } from './types';
+import { IComponent } from './interfaces';
 import { sortOptionsEnum } from './enums';
+
+import '../styles/sort.css';
 
 export class Sort implements IComponent {
   constructor() {}

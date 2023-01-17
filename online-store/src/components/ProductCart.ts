@@ -1,7 +1,9 @@
 import { AppState } from '../Store/AppState';
-import '../styles/productCart.css';
+
 import { IComponent } from './interfaces';
 import { LegoItem } from './types';
+
+import '../styles/productCart.css';
 
 export class ProductCart implements IComponent {
   cartIndex: number;

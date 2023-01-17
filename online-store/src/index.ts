@@ -1,9 +1,10 @@
-import { locationResolver } from './appResolver';
 import BasketPage from './components/BasketPage';
 import Store from './components/store';
-import { LegoItem } from './components/types';
+import { AppState } from './Store/AppState';
+
+import { locationResolver } from './appResolver';
+
 import './global.css';
-import { AppState, appState } from './Store/AppState';
 
 const dataSource = 'https://raw.githubusercontent.com/poznerrr/fakedb/main/db.json';
 

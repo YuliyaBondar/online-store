@@ -1,12 +1,11 @@
-import App from '..';
 import { Basket } from '../components/Basket';
-import ProductsCarts from '../components/ProductsCarts';
-import Summary from '../components/Summary';
 import Store from '../components/store';
 import { Categories, LegoItem, Names, Order, Promo, Sizes } from '../components/types';
 import { Search } from '../components/search';
 import { Filter } from '../components/filter';
 import { Sort } from '../components/sort';
+
+import App from '..';
 
 export interface IState {
   app: App | null;

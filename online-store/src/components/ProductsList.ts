@@ -1,7 +1,8 @@
+import { AppState } from '../Store/AppState';
+
 import { LegoItem } from './types';
 import { ProductItem } from './ProductItem';
 import { IComponent } from './interfaces';
-import { AppState, appState } from '../Store/AppState';
 
 export class ProductsList implements IComponent {
   private products: LegoItem[] = [];

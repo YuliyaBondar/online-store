@@ -1,8 +1,9 @@
-import { isJSDocThisTag } from 'typescript';
 import { AppState } from '../Store/AppState';
-import '../styles/productsCarts.css';
+
 import { ProductCart } from './ProductCart';
 import { IComponent } from './interfaces';
+
+import '../styles/productsCarts.css';
 
 class ProductsCarts implements IComponent {
   private carts: ProductCart[] = [];

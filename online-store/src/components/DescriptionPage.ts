@@ -1,9 +1,9 @@
+import { AppState } from '../Store/AppState';
+
+import { locationResolver } from '../appResolver';
 import { Basket } from './Basket';
 import { IComponent } from './interfaces';
 import { LegoItem } from './types';
-
-import { AppState } from '../Store/AppState';
-import { locationResolver } from '../appResolver';
 
 import '../styles/descriptionPage.css';
 

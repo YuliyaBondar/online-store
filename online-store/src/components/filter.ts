@@ -1,8 +1,10 @@
-import { Categories, LegoItem, Names, Sizes, ValueItems } from './types';
-import '../styles/filter.css';
-import { IComponent } from './interfaces';
 import { AppState } from '../Store/AppState';
+
+import { Categories, LegoItem, Names, Sizes, ValueItems } from './types';
+import { IComponent } from './interfaces';
 import { LegoCategory, LegoName, LegoSize } from './enums';
+
+import '../styles/filter.css';
 
 export class Filter implements IComponent {
   constructor() {}
