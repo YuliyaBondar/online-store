@@ -19,7 +19,6 @@ export class Sort implements IComponent {
         (<HTMLElement>item).removeAttribute('selected');
         if (item.getAttribute('value') === AppState.instance.state.sortKey)
           (<HTMLElement>item).setAttribute('selected', 'selected');
-        console.log(item.getAttribute('value'), AppState.instance.state.sortKey, item);
       });
       (<HTMLElement>sortSelect).setAttribute('value', `${AppState.instance.state.sortKey}`);
     });

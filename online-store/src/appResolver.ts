@@ -7,7 +7,6 @@ export const locationResolver = async (location: string, option = '') => {
   const PAGE404 = new Page404().render();
   const units: string[] = location.split('/').filter((unit) => !!unit);
 
-  console.log(units);
   switch (units.length) {
     case 0:
       await AppState.instance.state.app?.toStore();
@@ -97,8 +96,6 @@ export const locationResolver = async (location: string, option = '') => {
           AppState.instance.state.app?.toStore();
           window.location.hash = '#/';
         }
-
-        console.log(parametres);
       } else {
         PAGE404;
       }
